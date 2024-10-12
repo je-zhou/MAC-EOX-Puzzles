@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link";
+import Image from "next/image";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,8 +28,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased px-6 py-4 space-y-8 min-h-screen`}
       >
+        {/* Logo */}
+        <Link href={"/"} className="">
+          <Image
+            src={"/mac-logo.png"}
+            alt="MAC logo"
+            width={125}
+            height={125}
+          />
+        </Link>
+
         {children}
       </body>
     </html>
