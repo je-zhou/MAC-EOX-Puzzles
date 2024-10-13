@@ -21,7 +21,7 @@ export default function LandingPage() {
         name="Combination number thing like those tiktoks"
         description=""
         imageUrl=""
-        link=""
+        link="/safe-cracking"
         isCompleted={false}
       />
       <GameTile
