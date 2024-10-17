@@ -12,6 +12,7 @@ const config: Config = {
   	extend: {
 		fontFamily: {
 			gta: ['GTAFont', 'sans-serif'],
+			gta2: ['ViceCity', 'sans-serif'],
 		},
   		colors: {
   			background: 'hsl(var(--background))',

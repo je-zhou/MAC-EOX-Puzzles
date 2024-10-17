@@ -1,28 +1,25 @@
 import Image from 'next/image';
 import React from 'react';
+import LandingPage from './landing';
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-cover bg-center flex flex-col items-center justify-between w-full max-w-sm mx-auto">
+    <div>
+
       {/* Header */}
-      <header className="w-full py-4 bg-black bg-opacity-50 text-white text-center text-xl font-bold font-ViceCity">
-        Grand Theft Auto: Vice City
+      <header className="w-full bg-opacity-50 text-white text-center text-4xl font-bold">
+        Puzzle Challenge
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4">
-        <h1 className="text-black text-4xl font-gta mb-4">
-          Welcome to Vice City
-        </h1>
-        <p className="text-black text-base font-gta text-center">
-          Experience the 80's like never before.
-        </p>
-      </main>
+      {/* Description */}
+      <p className="text-white text-center mt-2 text-2xl font-gta2" style={{ lineHeight: '1' }}>
+        Sample description lorem ipsum whatever womp womp
+      </p>
 
-      {/* Footer */}
-      <footer className="w-full py-4 bg-black bg-opacity-50 text-white text-center text-sm">
-        &copy; 2023 Vice City
-      </footer>
+      {/* Main content */}
+      <div className="pt-4">
+        <LandingPage/>
+      </div>
     </div>
   );
 };
