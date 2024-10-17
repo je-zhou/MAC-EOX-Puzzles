@@ -31,20 +31,6 @@ export default function LandingPage() {
         link=""
         isCompleted={false}
       />
-      <GameTile
-        name="Jason"
-        description=""
-        imageUrl=""
-        link=""
-        isCompleted={false}
-      />
-      <GameTile
-        name="Farm merge valley type puzzle"
-        description=""
-        imageUrl=""
-        link=""
-        isCompleted={false}
-      />
     </div>
   );
 }
@@ -73,8 +59,8 @@ function GameTile({
           className="rounded-lg bg-red-200 w-full h-full"
         />
       </div>
-      <div className="p-2">
-        <h1>{name}</h1>
+      <div className="p-4 flex items-center">
+        <h1 className="text-xl text-white font-gta">{name}</h1>
       </div>
     </Link>
   );
