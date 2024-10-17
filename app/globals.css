@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+
+@font-face {
+  font-family: 'GTAFont';
+  src: url('./fonts/gtafont.ttf') format('truetype');
 }
+
+body {
+  font-family: 'GTAFont', sans-serif;
+}
+
 
 @layer utilities {
   .text-balance {
