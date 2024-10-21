@@ -21,31 +21,31 @@ const SafeCrackingGame = () => {
   const generateClues = (combination: number[]): string[] => {
     const newClues: string[] = [];
     for (let i = 0; i < 5; i++) {
-      let guessClue = generateRandomCombination();
-      let correctDigits = 0;
-      let correctPositions = 0;
+        let guessClue = generateRandomCombination();
+        let correctDigits = 0;
+        let correctPositions = 0;
 
-      for (let j = 0; j < 3; j++) {
-        if (guessClue[j] === combination[j]) {
-          correctPositions++;
-        } else if (combination.includes(guessClue[j])) {
-          correctDigits++;
+        for (let j = 0; j < 3; j++) {
+            if (guessClue[j] === combination[j]) {
+                correctPositions++;
+            } else if (combination.includes(guessClue[j])) {
+                correctDigits++;
+            }
         }
-      }
 
-      let clueText = `${guessClue.join('')}: `;
-      if (correctPositions === 0 && correctDigits === 0) {
-        clueText += "No number correct";
-      } else {
-        if (correctDigits > 0) {
-          clueText += `${correctDigits} digit${correctDigits > 1 ? 's' : ''} correct but in the wrong place`;
-          if (correctPositions > 0) clueText += " and ";
+        let clueText = `${guessClue.join('')}: `;
+        if (correctPositions === 0 && correctDigits === 0) {
+            clueText += "0 correct";
+        } else {
+            if (correctDigits > 0) {
+                clueText += `${correctDigits} digit${correctDigits > 1 ? 's' : ''} misplaced`;
+                if (correctPositions > 0) clueText += " and ";
+            }
+            if (correctPositions > 0) {
+                clueText += `${correctPositions} digit${correctPositions > 1 ? 's' : ''} in place`;
+            }
         }
-        if (correctPositions > 0) {
-          clueText += `${correctPositions} digit${correctPositions > 1 ? 's' : ''} correct and in the right place`;
-        }
-      }
-      newClues.push(clueText);
+        newClues.push(clueText);
     }
     return newClues;
   };
@@ -68,15 +68,15 @@ const SafeCrackingGame = () => {
   const checkCombination = () => {
     setAttempts(attempts + 1);
     const guessNumbers = guess.map(num => parseInt(num));
-
+  
     if (guessNumbers.some(isNaN)) {
       setResult("Please enter valid numbers.");
       return;
     }
-
+  
     let correctDigits = 0;
     let correctPositions = 0;
-
+  
     for (let i = 0; i < 3; i++) {
       if (guessNumbers[i] === correctCombination[i]) {
         correctPositions++;
@@ -84,13 +84,27 @@ const SafeCrackingGame = () => {
         correctDigits++;
       }
     }
-
+  
     if (correctPositions === 3) {
       setResult("Congratulations! You cracked the safe!");
     } else {
-      setResult(`${correctDigits} digit(s) correct but in the wrong place, ${correctPositions} digit(s) correct and in the right place.`);
+      let resultText = ``;
+  
+      if (correctPositions === 0 && correctDigits === 0) {
+        resultText += "0 correct";
+      } else {
+        if (correctDigits > 0) {
+          resultText += `${correctDigits} digit${correctDigits > 1 ? 's' : ''} misplaced`;
+          if (correctPositions > 0) resultText += " and ";
+        }
+        if (correctPositions > 0) {
+          resultText += `${correctPositions} digit${correctPositions > 1 ? 's' : ''} in place`;
+        }
+      }
+  
+      setResult(resultText);
     }
-  };
+  };  
 
   return (
     <SafeCrackingUI
