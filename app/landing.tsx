@@ -14,7 +14,7 @@ export default function LandingPage() {
         name="Rush hour"
         description=""
         imageUrl=""
-        link=""
+        link="/rush-hour"
         isCompleted={false}
       />
       <GameTile
