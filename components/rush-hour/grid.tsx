@@ -1,4 +1,5 @@
 // components/rushhour/Grid.tsx
+
 import React from 'react';
 
 interface GridProps {
@@ -22,8 +23,14 @@ const Grid: React.FC<GridProps> = ({ children }) => {
 
   return (
     <div
-      className="relative grid grid-cols-6 grid-rows-6"
-      style={{ width: '360px', height: '360px', border: '4px solid gray' }}
+      className="relative grid grid-cols-6 grid-rows-6 border-4 border-gray-800"
+      style={{
+        width: '360px',
+        height: '360px',
+        gridTemplateColumns: 'repeat(6, 60px)',
+        gridTemplateRows: 'repeat(6, 60px)',
+        border: '4px solid gray',
+      }}
     >
       {cells}
       {children}

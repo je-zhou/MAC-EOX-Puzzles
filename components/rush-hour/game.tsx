@@ -6,8 +6,31 @@ import Car from './car';
 import { Car as CarType } from '@/app/types/Car';
 
 const initialCars: CarType[] = [
-  { id: 1, x: 0, y: 2, length: 2, orientation: 'horizontal', isMain: true },
-  { id: 2, x: 2, y: 0, length: 3, orientation: 'vertical', isMain: false },
+  {
+  id: 1,
+  x: 2,
+  y: 2,
+  length: 2,
+  orientation: 'horizontal',
+  isMain: true,
+},
+// Other cars
+{
+  id: 2,
+  x: 0,
+  y: 0,
+  length: 3,
+  orientation: 'vertical',
+  isMain: false,
+},
+{
+  id: 3,
+  x: 4,
+  y: 1,
+  length: 2,
+  orientation: 'vertical',
+  isMain: false,
+},
   // Add more cars as needed
 ];
 

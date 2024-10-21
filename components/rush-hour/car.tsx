@@ -1,6 +1,7 @@
 // components/rushhour/Car.tsx
+
 import React from 'react';
-import { animated, useSpring } from 'react-spring';
+import { animated } from 'react-spring';
 import { useDrag } from '@use-gesture/react';
 import { Car as CarType } from '@/app/types/Car';
 
@@ -12,16 +13,18 @@ interface CarProps {
 const Car: React.FC<CarProps> = ({ car, moveCar }) => {
   const { x, y, length, orientation, isMain } = car;
 
-  const width = orientation === 'horizontal' ? length * 60 : 60;
-  const height = orientation === 'vertical' ? length * 60 : 60;
+  const cellSize = 60;
 
-  const left = x * 60;
-  const top = y * 60;
+  const width = orientation === 'horizontal' ? length * cellSize : cellSize;
+  const height = orientation === 'vertical' ? length * cellSize : cellSize;
+
+  const left = x * cellSize;
+  const top = y * cellSize;
 
   const bind = useDrag(
     ({ movement: [mx, my], last }) => {
-      const deltaX = orientation === 'horizontal' ? Math.round(mx / 60) : 0;
-      const deltaY = orientation === 'vertical' ? Math.round(my / 60) : 0;
+      const deltaX = orientation === 'horizontal' ? Math.round(mx / cellSize) : 0;
+      const deltaY = orientation === 'vertical' ? Math.round(my / cellSize) : 0;
 
       if (last) {
         moveCar(car.id, deltaX, deltaY);
@@ -30,10 +33,13 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
     { axis: orientation === 'horizontal' ? 'x' : 'y' }
   );
 
+  // Use conditional class names
+  const carClasses = `absolute ${isMain ? 'bg-red-500' : 'bg-blue-500'}`;
+
   return (
     <animated.div
       {...bind()}
-      className={`absolute bg-${isMain ? 'red' : 'blue'}-500`}
+      className={carClasses}
       style={{
         width: `${width}px`,
         height: `${height}px`,

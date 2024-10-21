@@ -56,6 +56,14 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+			gridTemplateColumns: {
+        // 6 columns with 60px width each
+        '6-60': 'repeat(6, 60px)',
+      },
+      gridTemplateRows: {
+        // 6 rows with 60px height each
+        '6-60': 'repeat(6, 60px)',
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],
