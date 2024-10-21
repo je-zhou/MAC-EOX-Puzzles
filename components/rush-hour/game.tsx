@@ -39,34 +39,35 @@ const RushHourGame: React.FC = () => {
 
   const moveCar = (id: number, deltaX: number, deltaY: number) => {
     setCars((prevCars) => {
-      const newCars = [...prevCars];
-      const carIndex = newCars.findIndex((c) => c.id === id);
-      const car = newCars[carIndex];
-
-      let newX = car.x + deltaX;
-      let newY = car.y + deltaY;
-
-      // Ensure car stays within grid bounds
-      if (car.orientation === 'horizontal') {
-        newX = Math.max(0, Math.min(newX, 6 - car.length));
-      } else {
-        newY = Math.max(0, Math.min(newY, 6 - car.length));
-      }
-
-      // Check for collisions
-      const collision = newCars.some((otherCar, idx) => {
-        if (idx === carIndex) return false;
-        return isCollision(
-          { ...car, x: newX, y: newY },
-          otherCar
-        );
+      const newCars = prevCars.map((car) => {
+        if (car.id !== id) return car;
+  
+        let newX = car.x + deltaX;
+        let newY = car.y + deltaY;
+  
+        // Ensure car stays within grid bounds
+        if (car.orientation === 'horizontal') {
+          newX = Math.max(0, Math.min(newX, 6 - car.length));
+        } else {
+          newY = Math.max(0, Math.min(newY, 6 - car.length));
+        }
+  
+        // Check for collisions
+        const collision = prevCars.some((otherCar) => {
+          if (otherCar.id === id) return false;
+          return isCollision(
+            { ...car, x: newX, y: newY },
+            otherCar
+          );
+        });
+  
+        if (!collision) {
+          return { ...car, x: newX, y: newY };
+        } else {
+          return car; // No movement due to collision
+        }
       });
-
-      if (!collision) {
-        car.x = newX;
-        car.y = newY;
-      }
-
+  
       return newCars;
     });
   };

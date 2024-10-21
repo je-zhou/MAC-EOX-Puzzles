@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
     darkMode: ["class"],
@@ -9,6 +10,10 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			gta: ['GTAFont', 'sans-serif'],
+			gta2: ['ViceCity', 'sans-serif'],
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -55,17 +60,10 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  			},
   		},
-			gridTemplateColumns: {
-        // 6 columns with 60px width each
-        '6-60': 'repeat(6, 60px)',
-      },
-      gridTemplateRows: {
-        // 6 rows with 60px height each
-        '6-60': 'repeat(6, 60px)',
-      },
-  	}
-  },
-  plugins: [require("tailwindcss-animate")],
+  plugins: tailwindcssAnimate,
+	},
 };
-export default config;
+
+export default config

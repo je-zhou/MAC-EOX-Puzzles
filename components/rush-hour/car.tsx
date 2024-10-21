@@ -1,6 +1,6 @@
 // components/rushhour/Car.tsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import { animated } from 'react-spring';
 import { useDrag } from '@use-gesture/react';
 import { Car as CarType } from '@/app/types/Car';
@@ -21,19 +21,40 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
   const left = x * cellSize;
   const top = y * cellSize;
 
+  const [offset, setOffset] = useState(0);
+
   const bind = useDrag(
-    ({ movement: [mx, my], last }) => {
-      const deltaX = orientation === 'horizontal' ? Math.round(mx / cellSize) : 0;
-      const deltaY = orientation === 'vertical' ? Math.round(my / cellSize) : 0;
+    ({ delta: [dx, dy], last, movement: [mx, my], memo = 0 }) => {
+      const delta = orientation === 'horizontal' ? dx : dy;
+      const move = delta / cellSize;
+
+      // Accumulate the movement
+      const accumulated = memo + move;
+
+      // Calculate how many grid cells to move
+      const gridMovement = Math.trunc(accumulated);
+
+      // Update the memo
+      const newMemo = accumulated - gridMovement;
+
+      if (gridMovement !== 0) {
+        // Move the car by gridMovement cells
+        moveCar(
+          car.id,
+          orientation === 'horizontal' ? gridMovement : 0,
+          orientation === 'vertical' ? gridMovement : 0
+        );
+      }
 
       if (last) {
-        moveCar(car.id, deltaX, deltaY);
+        return undefined; // Reset memo on last event
       }
+
+      return newMemo; // Persist memo between events
     },
     { axis: orientation === 'horizontal' ? 'x' : 'y' }
   );
 
-  // Use conditional class names
   const carClasses = `absolute ${isMain ? 'bg-red-500' : 'bg-blue-500'}`;
 
   return (
@@ -46,6 +67,7 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
         left: `${left}px`,
         top: `${top}px`,
         touchAction: 'none',
+        zIndex: 1,
       }}
     ></animated.div>
   );
