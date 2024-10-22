@@ -29,7 +29,7 @@ const Grid: React.FC<GridProps> = ({ children }) => {
         height: '360px',
         gridTemplateColumns: 'repeat(6, 60px)',
         gridTemplateRows: 'repeat(6, 60px)',
-        border: '4px solid gray',
+        border: '1px solid gray',
       }}
     >
       {cells}

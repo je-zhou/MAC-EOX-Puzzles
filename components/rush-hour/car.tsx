@@ -67,7 +67,6 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
         left: `${left}px`,
         top: `${top}px`,
         touchAction: 'none',
-        zIndex: 1,
       }}
     ></animated.div>
   );

@@ -1,6 +1,6 @@
 // pages/rushhour.tsx
 import React from 'react';
-import RushHourGame from '@/components/rush-hour/game';
+import RushHourGame from '@/components/rush-hour/Game';
 
 const RushHourPage: React.FC = () => {
   return (
