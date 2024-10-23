@@ -1,7 +1,7 @@
 // components/rushhour/Car.tsx
 
 import React, { useState } from 'react';
-import { animated } from 'react-spring';
+import { animated, useSpring } from 'react-spring';
 import { useDrag } from '@use-gesture/react';
 import { Car as CarType } from '@/app/types/Car';
 
@@ -11,13 +11,13 @@ interface CarProps {
 }
 
 const Car: React.FC<CarProps> = ({ car, moveCar }) => {
-  const { x, y, length, orientation, isMain } = car;
+  const { x, y, length, orientation, isMain, color } = car;
 
-  const cellSize = 60;
+  const cellSize = 35;
 
   const width = orientation === 'horizontal' ? length * cellSize : cellSize;
   const height = orientation === 'vertical' ? length * cellSize : cellSize;
-
+  
   const left = x * cellSize;
   const top = y * cellSize;
 
@@ -55,7 +55,23 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
     { axis: orientation === 'horizontal' ? 'x' : 'y' }
   );
 
-  const carClasses = `absolute ${isMain ? 'bg-red-500' : 'bg-blue-500'}`;
+  // **Map of color names to Tailwind CSS classes**
+  const colorClassMap: { [key: string]: string } = {
+    'red-500': 'bg-red-500',
+    'blue-500': 'bg-blue-500',
+    'green-500': 'bg-green-500',
+    'yellow-500': 'bg-yellow-500',
+    'purple-500': 'bg-purple-500',
+    'pink-500': 'bg-pink-500',
+    'orange-500': 'bg-orange-500',
+    // Add more colors as needed
+  };
+
+  // **Get the class name for the car's color**
+  const colorClass = colorClassMap[color] || 'bg-gray-500'; // Default to gray if color not found
+
+  const carClasses = `absolute ${colorClass} rounded-xl`;
+
 
   return (
     <animated.div
@@ -64,8 +80,8 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
       style={{
         width: `${width}px`,
         height: `${height}px`,
-        left: `${left}px`,
-        top: `${top}px`,
+        left: `${left + (orientation === 'horizontal' ? offset : 0)}px`,
+        top: `${top + (orientation === 'vertical' ? offset : 0)}px`,
         touchAction: 'none',
       }}
     ></animated.div>

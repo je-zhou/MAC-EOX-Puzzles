@@ -5,4 +5,5 @@ export interface Car {
   length: number;
   orientation: 'horizontal' | 'vertical';
   isMain: boolean;
+  color: string;
 }
