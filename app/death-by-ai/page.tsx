@@ -4,7 +4,7 @@ import DeathByAiClient from "./components/client";
 
 export default function DeathByAi() {
   return (
-    <div>
+    <div className="w-full flex items-center justify-center">
       <DeathByAiClient></DeathByAiClient>
     </div>
   );
