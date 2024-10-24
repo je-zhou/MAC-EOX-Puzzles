@@ -28,7 +28,7 @@ export default function LandingPage() {
         name="Death by AI"
         description=""
         imageUrl=""
-        link=""
+        link="/death-by-ai"
         isCompleted={false}
       />
     </div>
