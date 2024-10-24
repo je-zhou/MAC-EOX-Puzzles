@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 
 @font-face {
@@ -119,4 +120,28 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+.sticky-note {
+  position: relative;
+  background: linear-gradient(to bottom right, #fff9c4, #ffecb3);
+  transform: rotate(-1deg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sticky-note:before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  background: #ffeb3b; /* Yellow for the note effect */
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.handwriting {
+  font-family: 'Patrick Hand', cursive; /* Apply the handwriting font */
+  font-size: 1.2rem; /* Adjust font size as needed */
+  line-height: 1.4; /* Improve readability */
 }
