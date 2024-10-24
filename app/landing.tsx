@@ -13,8 +13,8 @@ export default function LandingPage() {
       <GameTile
         name="Rush hour"
         description=""
-        imageUrl=""
-        link=""
+        imageUrl="/rush-hour/rush-hour.webp"
+        link="/rush-hour"
         isCompleted={false}
       />
       <GameTile
@@ -56,6 +56,8 @@ function GameTile({
         <Image
           src={imageUrl}
           alt={name}
+          width={80}
+          height={80}
           className="rounded-lg bg-red-200 w-full h-full"
         />
       </div>
