@@ -1,67 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { link } from "fs";
 
 export default function LandingPage() {
-  // TODO: I'm thinking we can have a main state that monitors the completion of all 4 games.
-  // e.g. once someone has completed game 1, we can like navigate them back to the landing page
-  // but show them that game 1 is completed.
+    // TODO: I'm thinking we can have a main state that monitors the completion of all 4 games.
+    // Implemented, but not thoroughly tested. Test more after the games are merged
 
-  return (
-    <div className="w-full space-y-4">
-      <GameTile
-        name="Rush hour"
-        description=""
-        imageUrl=""
-        link=""
-        isCompleted={false}
-      />
-      <GameTile
-        name="Combination number thing like those tiktoks"
-        description=""
-        imageUrl=""
-        link=""
-        isCompleted={false}
-      />
-      <GameTile
-        name="Death by AI"
-        description=""
-        imageUrl=""
-        link=""
-        isCompleted={false}
-      />
-    </div>
-  );
+    const [gameStatus, setGameStatus] = useState({
+        rushHour: false,
+        combinationNumber: false,
+        deathByAI: false,
+    });
+
+    useEffect(() => {
+        const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
+        setGameStatus((prevStatus) => ({ ...prevStatus, ...savedStatus }));
+    }, []);
+
+    const handleGameCompletion = (gameName: string) => {
+        const updatedStatus = { ...gameStatus, [gameName]: true };
+        setGameStatus(updatedStatus);
+        localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
+    };
+
+    return (
+        <div className="w-full space-y-4">
+            <GameTile
+                name="Rush hour"
+                description=""
+                imageUrl=""
+                link=""
+                isCompleted={gameStatus.rushHour}
+                onComplete={() => handleGameCompletion("rushHour")}
+            />
+            <GameTile
+                name="Combination number thing like those tiktoks"
+                description=""
+                imageUrl=""
+                link=""
+                isCompleted={gameStatus.combinationNumber}
+                onComplete={() => handleGameCompletion("combinationNumber")}
+            />
+            <GameTile
+                name="Death by AI"
+                description=""
+                imageUrl=""
+                link=""
+                isCompleted={gameStatus.deathByAI}
+                onComplete={() => handleGameCompletion("deathByAI")}
+            />
+        </div>
+    );
 }
 
 interface GameTileInterface {
-  name: string;
-  description: string;
-  imageUrl: string;
-  link: string;
-  isCompleted: boolean;
+    name: string;
+    description: string;
+    imageUrl: string;
+    link: string;
+    isCompleted: boolean;
+    onComplete: () => void;
 }
 
 function GameTile({
-  name,
-  description,
-  imageUrl,
-  link,
-  isCompleted,
-}: GameTileInterface) {
-  return (
-    <Link href={link} className="w-full flex">
-      <div className="w-20 h-20">
-        <Image
-          src={imageUrl}
-          alt={name}
-          className="rounded-lg bg-red-200 w-full h-full"
-        />
-      </div>
-      <div className="p-4 flex items-center">
-        <h1 className="text-xl text-white font-gta">{name}</h1>
-      </div>
-    </Link>
-  );
+                      name,
+                      description,
+                      imageUrl,
+                      link,
+                      isCompleted,
+                      onComplete,
+                  }: GameTileInterface) {
+    return (
+        <Link href={link} className="w-full flex" onClick={onComplete}>
+            <div className="w-20 h-20">
+                <Image
+                    src={imageUrl}
+                    alt={name}
+                    className="rounded-lg bg-red-200 w-full h-full"
+                />
+            </div>
+            <div className="p-4 flex items-center">
+                <h1 className="text-xl text-white font-gta">{name}</h1>
+                {isCompleted && <span className="ml-2 text-green-500">Completed</span>}
+            </div>
+        </Link>
+    );
 }
