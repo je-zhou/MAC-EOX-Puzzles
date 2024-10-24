@@ -13,7 +13,7 @@ export default function LandingPage() {
       <GameTile
         name="Rush hour"
         description=""
-        imageUrl="/rush-hour.webp"
+        imageUrl="/rush-hour/rush-hour.webp"
         link="/rush-hour"
         isCompleted={false}
       />

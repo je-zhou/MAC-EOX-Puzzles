@@ -13,10 +13,42 @@
   src: url('./fonts/vicecityfont.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Patternakan';
+  src: url('/fonts/title.ttf') format('truetype'); /* Link to the ttf font file */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Ensures text is visible while the font loads */
+}
+
 body {
   font-family: 'GTAFont', sans-serif;
 }
 
+.title {
+  font-family: 'Patternakan', sans-serif;
+}
+
+@keyframes flickerGlowPink {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow: 0 0 2px rgba(255, 20, 147, 0.7),  /* Subtle pink glow */
+                 0 0 4px rgba(255, 20, 147, 0.5),
+                 0 0 8px rgba(255, 20, 147, 0.3);
+  }
+  20%, 24%, 55% {
+    text-shadow: 0 0 6px rgba(255, 20, 147, 1),   /* Intense flicker */
+                 0 0 8px rgba(255, 20, 147, 0.9),
+                 0 0 10px rgba(255, 20, 147, 0.8);
+  }
+}
+
+.glowing-text {
+  color: white; /* White text */
+  text-shadow: 0 0 2px rgba(255, 20, 147, 0.7),
+               0 0 4px rgba(255, 20, 147, 0.5),
+               0 0 6px rgba(255, 20, 147, 0.3);
+  animation: flickerGlowPink 1.5s infinite; /* Flickering animation */
+}
 
 @layer utilities {
   .text-balance {

@@ -6,4 +6,5 @@ export interface Car {
   orientation: 'horizontal' | 'vertical';
   isMain: boolean;
   color: string;
+  image: string;
 }

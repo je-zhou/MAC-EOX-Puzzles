@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useDrag } from '@use-gesture/react';
 import { Car as CarType } from '@/app/types/Car';
+import Image from 'next/image';
 
 interface CarProps {
   car: CarType;
@@ -11,7 +12,7 @@ interface CarProps {
 }
 
 const Car: React.FC<CarProps> = ({ car, moveCar }) => {
-  const { x, y, length, orientation, isMain, color } = car;
+  const { x, y, length, orientation, isMain, color, image } = car;
 
   const cellSize = 35;
 
@@ -70,7 +71,7 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
   // **Get the class name for the car's color**
   const colorClass = colorClassMap[color] || 'bg-gray-500'; // Default to gray if color not found
 
-  const carClasses = `absolute ${colorClass} rounded-xl`;
+  const carClasses = `absolute ${image ? '' : colorClass} rounded-xl`;
 
 
   return (
@@ -83,8 +84,15 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
         left: `${left + (orientation === 'horizontal' ? offset : 0)}px`,
         top: `${top + (orientation === 'vertical' ? offset : 0)}px`,
         touchAction: 'none',
-      }}
-    ></animated.div>
+      }}>
+      <Image
+        src={image}
+        alt={`Car ${car.id}`}
+        layout="fill"
+        objectFit="contain"
+        draggable={false}
+      />
+    </animated.div>
   );
 };
 

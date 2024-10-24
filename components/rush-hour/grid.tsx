@@ -50,7 +50,7 @@ const Grid: React.FC<GridProps> = ({ children }) => {
           height: `${cellSize}px`,
         }}
       >
-        <span className="text-lg font-bold text-white">EXIT</span>
+        <span className="text-lg font-medium text-white">EXIT</span>
       </div>
     </div>
   );

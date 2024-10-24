@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Grid from './Grid';
 import Car from './Car';
 import { Car as CarType } from '@/app/types/Car';
+import { useRouter } from 'next/navigation'; 
 
 const initialCars: CarType[] = [
   // Main car (placed on the 2nd row)
@@ -16,6 +17,7 @@ const initialCars: CarType[] = [
     orientation: 'horizontal',
     isMain: true,
     color: 'red-500',
+    image: '/rush-hour/pinkcar-h.png'
   },
   // Other cars
   {
@@ -26,6 +28,7 @@ const initialCars: CarType[] = [
     orientation: 'horizontal',
     isMain: false,
     color: 'blue-500',
+    image: '/rush-hour/longcar-h.png'
   },
   {
     id: 3,
@@ -35,6 +38,7 @@ const initialCars: CarType[] = [
     orientation: 'vertical',
     isMain: false,
     color: 'green-500',
+    image: '/rush-hour/longcar-v.png'
   },
   {
     id: 4,
@@ -44,6 +48,7 @@ const initialCars: CarType[] = [
     orientation: 'horizontal',
     isMain: false,
     color: 'purple-500',
+    image: '/rush-hour/policecar-h.png'
   },
   {
     id: 5,
@@ -53,6 +58,7 @@ const initialCars: CarType[] = [
     orientation: 'vertical',
     isMain: false,
     color: 'pink-500',
+    image: '/rush-hour/policecar-v.png'
   },
   {
     id: 6,
@@ -62,6 +68,7 @@ const initialCars: CarType[] = [
     orientation: 'vertical',
     isMain: false,
     color: 'yellow-500',
+    image: '/rush-hour/longcar-v.png'
   },
   // Add more cars as needed
 ];
@@ -69,6 +76,7 @@ const initialCars: CarType[] = [
 const RushHourGame: React.FC = () => {
   const [cars, setCars] = useState<CarType[]>(initialCars);
   const [gameWon, setGameWon] = useState(false);
+  const router = useRouter();
 
   const moveCar = (id: number, deltaX: number, deltaY: number) => {
     setCars((prevCars) => {
@@ -95,7 +103,19 @@ const RushHourGame: React.FC = () => {
         });
   
         if (!collision) {
-          return { ...car, x: newX, y: newY };
+          const updatedCar = { ...car, x: newX, y: newY };
+
+          // **Check for winning condition**
+          if (
+            updatedCar.isMain &&
+            updatedCar.orientation === 'horizontal' &&
+            updatedCar.x + updatedCar.length === 6 // Car has reached the right edge
+          ) {
+            // The main car has reached the exit
+            setGameWon(true);
+          }
+
+          return updatedCar;
         } else {
           return car; // No movement due to collision
         }
@@ -127,7 +147,7 @@ const RushHourGame: React.FC = () => {
   };
 
   return (
-    <div className="relative p-3 bg-gray-800 rounded-lg shadow-lg">
+    <div className="relative p-3 bg-gray-900 rounded-lg shadow-lg">
     {/* Game Grid */}
     <Grid>
       {cars.map((car) => (
@@ -142,11 +162,10 @@ const RushHourGame: React.FC = () => {
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded font-sans font-medium"
               onClick={() => {
                 // Reset the game or navigate to another page
-                setGameWon(false);
-                setCars(initialCars);
+                router.push('/')
               }}
             >
-              Play Again
+              Home
             </button>
           </div>
         </div>
