@@ -28,8 +28,8 @@ export default function LandingPage() {
             <GameTile
                 name="Rush hour"
                 description=""
-                imageUrl=""
-                link=""
+                imageUrl="/rush-hour/rush-hour.webp"
+                link="/rush-hour"
                 isCompleted={gameStatus.rushHour}
                 onComplete={() => handleGameCompletion("rushHour")}
             />
@@ -37,7 +37,7 @@ export default function LandingPage() {
                 name="Combination number thing like those tiktoks"
                 description=""
                 imageUrl=""
-                link=""
+                link="/safe-cracking"
                 isCompleted={gameStatus.combinationNumber}
                 onComplete={() => handleGameCompletion("combinationNumber")}
             />
@@ -45,7 +45,7 @@ export default function LandingPage() {
                 name="Death by AI"
                 description=""
                 imageUrl=""
-                link=""
+                link="/death-by-ai"
                 isCompleted={gameStatus.deathByAI}
                 onComplete={() => handleGameCompletion("deathByAI")}
             />
