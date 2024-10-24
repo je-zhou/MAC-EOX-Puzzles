@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Lock } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Lock } from "lucide-react";
 
 interface SafeCrackingUIProps {
   clues: string[];
@@ -42,9 +42,9 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
       }
     };
 
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
     return () => {
-      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [dragging, startY, guess, handleInputChange]);
 
@@ -120,9 +120,9 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
 
         {/* Safe Image Positioned Below the Title */}
         <div className="flex justify-center mb-6">
-          <img 
-            src="/safe-background.png" 
-            alt="Safe" 
+          <img
+            src="/safe-background.png"
+            alt="Safe"
             className="w-48 h-48 object-contain"
           />
         </div>
@@ -139,7 +139,9 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
         </div>
 
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">Your Guess</h2>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+            Your Guess
+          </h2>
           <div className="flex justify-center">
             {guess.map((_, index) => (
               <div
