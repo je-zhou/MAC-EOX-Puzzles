@@ -13,15 +13,15 @@ export default function LandingPage() {
       <GameTile
         name="Rush hour"
         description=""
-        imageUrl=""
-        link=""
+        imageUrl="/rush-hour/rush-hour.webp"
+        link="/rush-hour"
         isCompleted={false}
       />
       <GameTile
         name="Combination number thing like those tiktoks"
         description=""
         imageUrl=""
-        link=""
+        link="/safe-cracking"
         isCompleted={false}
       />
       <GameTile
@@ -29,20 +29,6 @@ export default function LandingPage() {
         description=""
         imageUrl=""
         link="/death-by-ai"
-        isCompleted={false}
-      />
-      <GameTile
-        name="Jason"
-        description=""
-        imageUrl=""
-        link=""
-        isCompleted={false}
-      />
-      <GameTile
-        name="Farm merge valley type puzzle"
-        description=""
-        imageUrl=""
-        link=""
         isCompleted={false}
       />
     </div>
@@ -70,11 +56,13 @@ function GameTile({
         <Image
           src={imageUrl}
           alt={name}
+          width={80}
+          height={80}
           className="rounded-lg bg-red-200 w-full h-full"
         />
       </div>
-      <div className="p-2">
-        <h1>{name}</h1>
+      <div className="p-4 flex items-center">
+        <h1 className="text-xl text-white font-gta">{name}</h1>
       </div>
     </Link>
   );

@@ -1,10 +1,27 @@
-import Image from "next/image";
-import LandingPage from "./landing";
+import Image from 'next/image';
+import React from 'react';
+import LandingPage from './landing';
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <div>
-      <LandingPage />
+
+      {/* Header */}
+      <header className="w-full bg-opacity-50 text-white text-center text-4xl font-bold">
+        Puzzle Challenge
+      </header>
+
+      {/* Description */}
+      <p className="text-white text-center mt-2 text-2xl font-gta2" style={{ lineHeight: '1' }}>
+        Sample description lorem ipsum whatever womp womp
+      </p>
+
+      {/* Main content */}
+      <div className="pt-4">
+        <LandingPage/>
+      </div>
     </div>
   );
-}
+};
+
+export default Home;
