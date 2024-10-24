@@ -124,6 +124,7 @@ body {
 .sticky-note {
   position: relative;
   background: linear-gradient(to bottom right, #fff9c4, #ffecb3);
+  opacity: 0.9; /* Apply transparency */
   transform: rotate(-1deg);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -142,6 +143,6 @@ body {
 
 .handwriting {
   font-family: 'Patrick Hand', cursive; /* Apply the handwriting font */
-  font-size: 1.2rem; /* Adjust font size as needed */
+  font-size: 1rem; /* Adjust font size as needed */
   line-height: 1.4; /* Improve readability */
 }

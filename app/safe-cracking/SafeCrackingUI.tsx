@@ -92,14 +92,14 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
     const nextDigit = (digit - 1 + 10) % 10;
 
     return (
-      <div className="flex flex-col items-center bg-gray-200 rounded-lg p-4 shadow-inner">
-        <div className="number-display text-2xl font-bold text-gray-400">
+      <div className="flex flex-col items-center bg-gray-600 bg-opacity-80 rounded-lg p-2 shadow-inner w-12">
+        <div className="number-display text-2xl font-bold text-gray-300">
           {previousDigit}
         </div>
-        <div className="number-display text-4xl font-bold text-gray-800">
+        <div className="number-display text-4xl font-bold text-white">
           {digit}
         </div>
-        <div className="number-display text-2xl font-bold text-gray-400">
+        <div className="number-display text-2xl font-bold text-gray-300">
           {nextDigit}
         </div>
       </div>
@@ -108,28 +108,19 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 py-8 px-4"
+      className="h-auto flex items-start justify-center"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="bg-white rounded-lg shadow-2xl p-8 max-w-lg w-full">
-        <h1 className="text-4xl font-bold mb-6 text-center text-gray-800 flex items-center justify-center">
-          <Lock className="mr-2" /> Crack the Safe
+      <div className="bg-gray-800 bg-opacity-90 rounded-lg shadow-2xl p-8 max-w-lg w-full">
+        <h1 className="text-4xl font-bold mb-6 text-center text-white flex items-center justify-center glowing-text">
+          Crack the Safe
         </h1>
 
-        {/* Safe Image Positioned Below the Title */}
-        <div className="flex justify-center mb-6">
-          <img
-            src="/safe-background.png"
-            alt="Safe"
-            className="w-48 h-48 object-contain"
-          />
-        </div>
-
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">Clues</h2>
-          <div className="sticky-note p-4">
+        <div className="mb-4">
+          <h2 className="text-2xl font-semibold text-gray-200 mb-2">Clues</h2>
+          <div className="sticky-note p-4 bg-gray-700 bg-opacity-70 text-gray-800 rounded-lg">
             {clues.map((clue, index) => (
               <p key={index} className="handwriting mb-2">
                 {clue}
@@ -138,8 +129,8 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
           </div>
         </div>
 
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+        <div className="mb-4">
+          <h2 className="text-2xl font-semibold text-gray-200 mb-2">
             Your Guess
           </h2>
           <div className="flex justify-center">
@@ -156,21 +147,21 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
           </div>
         </div>
 
-        <div className="mb-6 text-center">
-          <p className="text-lg font-semibold text-red-600">{result}</p>
-          <p className="text-gray-600 mt-2">Attempts: {attempts}</p>
+        <div className="mb-4 text-center">
+          <p className="text-lg font-semibold text-red-400">{result}</p>
+          <p className="text-gray-300 mt-2">Attempts: {attempts}</p>
         </div>
 
         <div className="flex justify-between">
           <button
             onClick={checkCombination}
-            className="w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg mr-2 shadow-lg"
+            className="w-1/2 bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-3 rounded-lg mr-2 shadow-lg text-base"
           >
-            Try Combination
+            Try Combo
           </button>
           <button
             onClick={newGame}
-            className="w-1/2 bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg"
+            className="w-1/2 bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-3 rounded-lg shadow-lg text-base"
           >
             New Game
           </button>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import SafeCrackingUI from "./SafeCrackingUI"; // Adjust this path based on your structure
+import SafeCrackingUI from "./SafeCrackingUI";
 
 const SafeCrackingGame = () => {
   const [correctCombination, setCorrectCombination] = useState<number[]>([]);
@@ -90,7 +90,7 @@ const SafeCrackingGame = () => {
     }
 
     if (correctPositions === 3) {
-      setResult("Congratulations! You cracked the safe!");
+      setResult("You cracked the safe!");
     } else {
       let resultText = ``;
 
