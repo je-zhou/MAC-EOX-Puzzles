@@ -34,9 +34,9 @@ export default function LandingPage() {
         onComplete={() => handleGameCompletion("rushHour")}
       />
       <GameTile
-        name="Combination number thing like those tiktoks"
+        name="Code Breaker"
         description=""
-        imageUrl=""
+        imageUrl="/safe-cracking/bank-vault.jpg"
         link="/safe-cracking"
         isCompleted={gameStatus.combinationNumber}
         onComplete={() => handleGameCompletion("combinationNumber")}
