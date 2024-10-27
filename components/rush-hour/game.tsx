@@ -74,7 +74,7 @@ const initialCars: CarType[] = [
   // Add more cars as needed
 ];
 
-const RushHourGame: React.FC = () => {
+export const RushHourGame: React.FC = () => {
   const [cars, setCars] = useState<CarType[]>(initialCars);
   const [gameWon, setGameWon] = useState(false);
   const router = useRouter();
@@ -170,5 +170,3 @@ const RushHourGame: React.FC = () => {
     </div>
   );
 };
-
-export default RushHourGame;

@@ -1,7 +1,7 @@
 // pages/rushhour.tsx
 import React from "react";
 import { Quicksand } from "next/font/google";
-import RushHourGame from "@/components/rush-hour/game";
+import { RushHourGame } from "@/components/rush-hour/game";
 
 const quicksand = Quicksand({
   weight: ["400", "700"], // Specify the font weights
