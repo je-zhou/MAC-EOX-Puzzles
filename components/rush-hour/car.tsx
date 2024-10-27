@@ -83,7 +83,7 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
         height: `${height}px`,
         left: `${left + (orientation === 'horizontal' ? offset : 0)}px`,
         top: `${top + (orientation === 'vertical' ? offset : 0)}px`,
-        touchAction: 'none',
+        touchAction: 'none'
       }}>
       <Image
         src={image}

@@ -28,7 +28,7 @@ export default function LandingPage() {
             <GameTile
                 name="Rush hour"
                 description=""
-                imageUrl="/rush-hour/rush-hour.webp"
+                imageUrl=""
                 link="/rush-hour"
                 isCompleted={gameStatus.rushHour}
                 onComplete={() => handleGameCompletion("rushHour")}
