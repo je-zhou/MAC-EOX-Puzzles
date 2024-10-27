@@ -2,17 +2,39 @@
 
 import React, { useState, useEffect } from "react";
 import SafeCrackingUI from "./SafeCrackingUI";
+import { useRouter } from "next/navigation";
 
 const SafeCrackingGame = () => {
+  const router = useRouter();
   const [correctCombination, setCorrectCombination] = useState<number[]>([]);
   const [attempts, setAttempts] = useState(0);
   const [clues, setClues] = useState<string[]>([]);
-  const [guess, setGuess] = useState<string[]>(["0", "0", "0"]); // Initialize to 0 0 0
+  const [guess, setGuess] = useState<string[]>(["0", "0", "0"]);
   const [result, setResult] = useState("");
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
     newGame();
   }, []);
+
+  // Handle game completion
+  useEffect(() => {
+    if (isCompleted) {
+      // Update localStorage directly
+      try {
+        const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
+        const updatedStatus = { ...savedStatus, combinationNumber: true };
+        localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
+        
+        // Redirect to landing page after a short delay
+        setTimeout(() => {
+          router.push('/');
+        }, 2000);
+      } catch (error) {
+        console.error("Error saving game status:", error);
+      }
+    }
+  }, [isCompleted, router]);
 
   const generateRandomCombination = (): number[] => {
     return Array.from({ length: 3 }, () => Math.floor(Math.random() * 10));
@@ -59,8 +81,9 @@ const SafeCrackingGame = () => {
     setCorrectCombination(newCombination);
     setAttempts(0);
     setClues(generateClues(newCombination));
-    setGuess(["0", "0", "0"]); // Reset guess to 0 0 0
+    setGuess(["0", "0", "0"]);
     setResult("");
+    setIsCompleted(false);
   };
 
   const handleInputChange = (index: number, value: string) => {
@@ -91,6 +114,7 @@ const SafeCrackingGame = () => {
 
     if (correctPositions === 3) {
       setResult("You cracked the safe!");
+      setIsCompleted(true); // Set completion state when the game is won
     } else {
       let resultText = ``;
 
@@ -123,6 +147,7 @@ const SafeCrackingGame = () => {
       handleInputChange={handleInputChange}
       checkCombination={checkCombination}
       newGame={newGame}
+      isCompleted={isCompleted}
     />
   );
 };
