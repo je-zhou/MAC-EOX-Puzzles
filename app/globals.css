@@ -1,12 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 
 @font-face {
   font-family: 'GTAFont';
   src: url('./fonts/gtafont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'FontAlt';
+  src: url('./fonts/BankGothic Md BT.ttf') format('truetype');
 }
 
 @font-face {
@@ -124,6 +128,7 @@ body {
 .sticky-note {
   position: relative;
   background: linear-gradient(to bottom right, #fff9c4, #ffecb3);
+  opacity: 0.9; /* Apply transparency */
   transform: rotate(-1deg);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -141,7 +146,17 @@ body {
 }
 
 .handwriting {
-  font-family: 'Patrick Hand', cursive; /* Apply the handwriting font */
-  font-size: 1.2rem; /* Adjust font size as needed */
-  line-height: 1.4; /* Improve readability */
+  font-family: 'ViceCity', cursive;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.gta-font-alt {
+  font-family: 'FontAlt', sans-serif;
+  font-size: 1.6rem;
+}
+
+.gta-font-alt-sm {
+  font-family: 'FontAlt', sans-serif;
+  font-size: 1.2rem;
 }
