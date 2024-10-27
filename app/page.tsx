@@ -7,12 +7,12 @@ const Home: React.FC = () => {
   return (
     <div>
       {/* Header */}
-      <header className="w-full bg-opacity-50 text-white text-center text-3xl font-bold">
+      <header className="w-full bg-opacity-50 text-white text-center text-3xl font-bold font-pattanakarn">
         The Heist
       </header>
 
       {/* Description */}
-      <div className="flex flex-col text-white/80 mt-2 font-gta2 text-center pt-2 space-y-2">
+      <div className="flex flex-col text-white/80 mt-2 text-center pt-2 space-y-2">
         <p className="">Welcome to the MAC x CISSA EOX Heist!</p>
         <p>Complete the challenges below to earn your star.</p>
       </div>

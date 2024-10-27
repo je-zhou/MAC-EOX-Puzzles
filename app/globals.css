@@ -34,6 +34,14 @@ body {
   font-family: "Patternakan", sans-serif;
 } */
 
+@font-face {
+  font-family: "Patternakan";
+  src: url("/fonts/title.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @keyframes flickerGlowPink {
   0%,
   18%,
