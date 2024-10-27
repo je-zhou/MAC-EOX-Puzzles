@@ -1,41 +1,35 @@
 "use client";
 
-import { useChat } from "ai/react";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { DeathByAiQuestionState } from "./client";
 import { Button } from "@/components/ui/button";
+import TextStream from "./textStream";
+import { CarouselItem } from "@/components/ui/carousel";
 import Link from "next/link";
-
 interface ChatBoxProps {
   questionState: DeathByAiQuestionState;
-  resetHeist: () => void;
+  index: number;
+  proceedScenario: (
+    newScenario: string,
+    history: string[],
+    curScenarioNum: number,
+    outcome: "success" | "failure"
+  ) => void;
 }
 
-export default function ChatBox({ questionState, resetHeist }: ChatBoxProps) {
+export default function ChatBox({
+  questionState,
+  index,
+  proceedScenario,
+}: ChatBoxProps) {
   const [isJudging, setIsJudging] = useState(false);
-  const [response, setResponse] = useState<
-    | {
-        outcome: "success" | "failure";
-        scenario: "string";
-      }
-    | undefined
-  >();
+  const [input, setInput] = useState("");
+  const [response, setResponse] = useState<{
+    outcome: string;
+    scenario: string;
+  }>();
 
-  const { input, handleInputChange, messages, append } = useChat({
-    initialMessages: questionState.initialMessages,
-    onFinish(message) {
-      questionState.scenario = message.content;
-    },
-  });
-
-  useEffect(() => {
-    if (!questionState.scenario) {
-      append({
-        role: "user",
-        content: "Give me the scenario",
-      });
-    }
-  }, []);
+  if (questionState.scenario === undefined) return <CarouselItem />;
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -49,16 +43,26 @@ export default function ChatBox({ questionState, resetHeist }: ChatBoxProps) {
         },
         body: JSON.stringify({
           input,
-          messages: messages.map((m) => {
-            return { role: m.role, content: m.content };
-          }),
+          scenario: questionState.scenario,
+          history: questionState.history,
+          index,
         }),
       });
 
       const text = await response.json();
       const json = JSON.parse(text);
+
+      console.log(json);
+
       setResponse(json);
+      proceedScenario(
+        json.scenario,
+        [...questionState.history, json.scenario, input],
+        index,
+        json.outcome
+      );
     } catch (e) {
+      // TODO: Handle API traffic error.
     } finally {
       setIsJudging(false);
     }
@@ -69,59 +73,52 @@ export default function ChatBox({ questionState, resetHeist }: ChatBoxProps) {
       return <div>Judging...</div>;
     }
 
-    if (response) {
-      const pass = response.outcome === "success";
-
-      return (
-        <div>
-          <h1 className="font-bold text-2xl py-4">Result</h1>
-          <div className="flex flex-col items-center space-y-4 leading-loose">
-            <p>{response.scenario}</p>
-            {pass ? (
-              <Link href={"/"}>
-                <Button>Continue the Heist</Button>
-              </Link>
-            ) : (
-              <Button onClick={resetHeist}>Find another heist</Button>
-            )}
-          </div>
-        </div>
-      );
-    }
-
-    return <Button>Submit</Button>;
+    return (
+      <Button className="" disabled={response != null}>
+        Submit
+      </Button>
+    );
   }
 
   return (
-    <div className="flex flex-col w-full max-w-2xl">
-      <h1 className="font-bold text-2xl pb-4">Mission</h1>
-      {messages
-        .filter((m) => m.role == "assistant")
-        .map((m) => (
-          <div key={m.id} className=" whitespace-pre-wrap leading-loose">
-            {m.content}
-          </div>
-        ))}
-
-      <h1 className="font-bold text-2xl py-4">Plan</h1>
-
-      <form
-        onSubmit={onSubmit}
-        className=" flex flex-col items-center justify-center"
-      >
-        <textarea
-          className="w-full p-2 border border-gray-300 rounded"
-          value={input}
-          disabled={response !== undefined}
-          placeholder="My fantastic, awesome, killer plan is to..."
-          onChange={handleInputChange}
-          maxLength={300} // Add maxLength attribute
-        />
-        <div className="w-full flex justify-between pb-4">
-          <p>{input.length} / 300</p>
+    <CarouselItem>
+      <div className="flex flex-col w-full space-between h-[calc(100vh-100px)] relative">
+        <div className="flex-1 bg-white/90 rounded px-4 py-2 overflow-auto flex flex-col-reverse">
+          <TextStream text={questionState.scenario ?? ""} />
         </div>
-        <FinalComponent />
-      </form>
-    </div>
+
+        {questionState.outcome === "failure" ? (
+          <Button onClick={() => window.location.reload()} className="mt-4">
+            Try another heist
+          </Button>
+        ) : index === 4 ? (
+          <Link href={"/"}>
+            <Button onClick={() => window.location.reload()} className="mt-4">
+              Complete Heist
+            </Button>
+          </Link>
+        ) : (
+          <form
+            onSubmit={onSubmit}
+            className=" flex flex-col items-center justify-center bottom-0"
+          >
+            <div className="w-full flex justify-between items-center text-white">
+              <h1 className="font-bold text-2xl pb-2 pt-4">Plan</h1>
+              <p>{input.length} / 300</p>
+            </div>
+
+            <textarea
+              className="w-full p-2 border border-gray-300 rounded h-40 mb-4"
+              value={input}
+              disabled={response !== undefined}
+              placeholder="My fantastic, awesome, killer plan is to..."
+              onChange={(v) => setInput(v.target.value)}
+              maxLength={300} // Add maxLength attribute
+            />
+            <FinalComponent />
+          </form>
+        )}
+      </div>
+    </CarouselItem>
   );
 }
