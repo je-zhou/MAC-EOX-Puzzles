@@ -26,28 +26,28 @@ export default function LandingPage() {
   return (
     <div className="w-full space-y-4">
       <GameTile
-        name="Rush hour"
-        description=""
-        imageUrl="/rush-hour/rush-hour.webp"
-        link="/rush-hour"
-        isCompleted={gameStatus.rushHour}
-        onComplete={() => handleGameCompletion("rushHour")}
+        name="HAIST"
+        description="Can you mastermind the heist of the century?"
+        imageUrl="/haist/haist.webp"
+        link="/death-by-ai"
+        isCompleted={gameStatus.deathByAI}
+        onComplete={() => handleGameCompletion("deathByAI")}
       />
       <GameTile
         name="Code Breaker"
-        description=""
+        description="Crack the safe and steal your loot"
         imageUrl="/safe-cracking/bank-vault.jpg"
         link="/safe-cracking"
         isCompleted={gameStatus.combinationNumber}
         onComplete={() => handleGameCompletion("combinationNumber")}
       />
       <GameTile
-        name="Death by AI"
-        description=""
-        imageUrl=""
-        link="/death-by-ai"
-        isCompleted={gameStatus.deathByAI}
-        onComplete={() => handleGameCompletion("deathByAI")}
+        name="Rush Hour"
+        description="Escape the cops to complete the heist"
+        imageUrl="/rush-hour/rush-hour.webp"
+        link="/rush-hour"
+        isCompleted={gameStatus.rushHour}
+        onComplete={() => handleGameCompletion("rushHour")}
       />
     </div>
   );
@@ -72,18 +72,23 @@ function GameTile({
 }: GameTileInterface) {
   return (
     <Link href={link} className="w-full flex" onClick={onComplete}>
-      <div className="w-20 h-20">
+      <div className="w-20 h-20 aspect-square">
         <Image
           src={imageUrl}
           alt={name}
           width={100}
           height={100}
-          className="rounded-lg bg-red-200 w-full h-full"
+          className="rounded-lg w-full h-full object-cover"
         />
       </div>
-      <div className="p-4 flex items-center">
-        <h1 className="text-xl text-white font-gta">{name}</h1>
-        {isCompleted && <span className="ml-2 text-green-500">Completed</span>}
+      <div className=" px-2 flex flex-col">
+        <div className="flex items-center">
+          <h1 className="text-lg text-white font-gta">{name}</h1>
+          {isCompleted && (
+            <span className="ml-2 bg-green-400 h-2 w-2 rounded-full"></span>
+          )}
+        </div>
+        <h2 className="text-white/90 leading-tight">{description} </h2>
       </div>
     </Link>
   );

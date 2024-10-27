@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Header from "../components/header"; // Adjust the path if necessary
+import { Quicksand } from "next/font/google";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const quicksand = Quicksand({
+  weight: ["400", "700"], // Specify the font weights
+  subsets: ["latin"], // Specify the language subsets
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 export const metadata: Metadata = {
-  title: "CISSA x MAC Puzzle",
-  description: "Puzzle!",
+  title: "CISSA x MAC: The Heist",
+  description: "Welcome to the CISSA x MAC Heist!",
 };
 
 export default function RootLayout({
@@ -25,16 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
-      >
-
+      <body className={`${quicksand.className} antialiased min-h-screen`}>
         {/* Background Image */}
+        {/* Removing temporarily for MVP */}
+
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: "url('/main-bg.jpeg')",
-            filter: "brightness(0.7)",
+            filter: "brightness(0.6)",
             zIndex: -1,
             width: "100vw",
             height: "100vh",
@@ -45,9 +39,7 @@ export default function RootLayout({
         <Header />
 
         {/* Container for main content with padding */}
-        <main className="px-6 py-4 space-y-8">
-          {children}
-        </main>
+        <main className="px-6 py-4 space-y-8">{children}</main>
       </body>
     </html>
   );
