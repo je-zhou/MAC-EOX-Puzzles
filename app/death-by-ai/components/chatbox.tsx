@@ -22,14 +22,14 @@ export default function ChatBox({
   index,
   proceedScenario,
 }: ChatBoxProps) {
-  if (questionState.scenario === undefined) return <CarouselItem />;
-
   const [isJudging, setIsJudging] = useState(false);
   const [input, setInput] = useState("");
   const [response, setResponse] = useState<{
     outcome: string;
     scenario: string;
   }>();
+
+  if (questionState.scenario === undefined) return <CarouselItem />;
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
