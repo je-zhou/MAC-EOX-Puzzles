@@ -4,7 +4,7 @@ import Image from "next/image";
 const Header: React.FC = () => {
   return (
     <header
-      className="bg-transparent p-1 flex justify-center items-center backdrop-blur-3xl"
+      className="bg-transparent p-1 flex justify-center items-center backdrop-blur-3xl h-16"
       style={{
         background: "rgba(0, 0, 0, 0.25)",
         backdropFilter: "blur(10px)",
