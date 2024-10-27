@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import SafeCrackingUI from './SafeCrackingUI'; // Adjust this path based on your structure
+import React, { useState, useEffect } from "react";
+import SafeCrackingUI from "./SafeCrackingUI"; // Adjust this path based on your structure
 
 const SafeCrackingGame = () => {
   const [correctCombination, setCorrectCombination] = useState<number[]>([]);
   const [attempts, setAttempts] = useState(0);
   const [clues, setClues] = useState<string[]>([]);
-  const [guess, setGuess] = useState<string[]>(['0', '0', '0']); // Initialize to 0 0 0
-  const [result, setResult] = useState('');
+  const [guess, setGuess] = useState<string[]>(["0", "0", "0"]); // Initialize to 0 0 0
+  const [result, setResult] = useState("");
 
   useEffect(() => {
     newGame();
@@ -21,31 +21,35 @@ const SafeCrackingGame = () => {
   const generateClues = (combination: number[]): string[] => {
     const newClues: string[] = [];
     for (let i = 0; i < 5; i++) {
-        let guessClue = generateRandomCombination();
-        let correctDigits = 0;
-        let correctPositions = 0;
+      let guessClue = generateRandomCombination();
+      let correctDigits = 0;
+      let correctPositions = 0;
 
-        for (let j = 0; j < 3; j++) {
-            if (guessClue[j] === combination[j]) {
-                correctPositions++;
-            } else if (combination.includes(guessClue[j])) {
-                correctDigits++;
-            }
+      for (let j = 0; j < 3; j++) {
+        if (guessClue[j] === combination[j]) {
+          correctPositions++;
+        } else if (combination.includes(guessClue[j])) {
+          correctDigits++;
         }
+      }
 
-        let clueText = `${guessClue.join('')}: `;
-        if (correctPositions === 0 && correctDigits === 0) {
-            clueText += "0 correct";
-        } else {
-            if (correctDigits > 0) {
-                clueText += `${correctDigits} digit${correctDigits > 1 ? 's' : ''} misplaced`;
-                if (correctPositions > 0) clueText += " and ";
-            }
-            if (correctPositions > 0) {
-                clueText += `${correctPositions} digit${correctPositions > 1 ? 's' : ''} in place`;
-            }
+      let clueText = `${guessClue.join("")}: `;
+      if (correctPositions === 0 && correctDigits === 0) {
+        clueText += "0 correct";
+      } else {
+        if (correctDigits > 0) {
+          clueText += `${correctDigits} digit${
+            correctDigits > 1 ? "s" : ""
+          } misplaced`;
+          if (correctPositions > 0) clueText += " and ";
         }
-        newClues.push(clueText);
+        if (correctPositions > 0) {
+          clueText += `${correctPositions} digit${
+            correctPositions > 1 ? "s" : ""
+          } in place`;
+        }
+      }
+      newClues.push(clueText);
     }
     return newClues;
   };
@@ -55,8 +59,8 @@ const SafeCrackingGame = () => {
     setCorrectCombination(newCombination);
     setAttempts(0);
     setClues(generateClues(newCombination));
-    setGuess(['0', '0', '0']); // Reset guess to 0 0 0
-    setResult('');
+    setGuess(["0", "0", "0"]); // Reset guess to 0 0 0
+    setResult("");
   };
 
   const handleInputChange = (index: number, value: string) => {
@@ -67,16 +71,16 @@ const SafeCrackingGame = () => {
 
   const checkCombination = () => {
     setAttempts(attempts + 1);
-    const guessNumbers = guess.map(num => parseInt(num));
-  
+    const guessNumbers = guess.map((num) => parseInt(num));
+
     if (guessNumbers.some(isNaN)) {
       setResult("Please enter valid numbers.");
       return;
     }
-  
+
     let correctDigits = 0;
     let correctPositions = 0;
-  
+
     for (let i = 0; i < 3; i++) {
       if (guessNumbers[i] === correctCombination[i]) {
         correctPositions++;
@@ -84,27 +88,31 @@ const SafeCrackingGame = () => {
         correctDigits++;
       }
     }
-  
+
     if (correctPositions === 3) {
       setResult("Congratulations! You cracked the safe!");
     } else {
       let resultText = ``;
-  
+
       if (correctPositions === 0 && correctDigits === 0) {
         resultText += "0 correct";
       } else {
         if (correctDigits > 0) {
-          resultText += `${correctDigits} digit${correctDigits > 1 ? 's' : ''} misplaced`;
+          resultText += `${correctDigits} digit${
+            correctDigits > 1 ? "s" : ""
+          } misplaced`;
           if (correctPositions > 0) resultText += " and ";
         }
         if (correctPositions > 0) {
-          resultText += `${correctPositions} digit${correctPositions > 1 ? 's' : ''} in place`;
+          resultText += `${correctPositions} digit${
+            correctPositions > 1 ? "s" : ""
+          } in place`;
         }
       }
-  
+
       setResult(resultText);
     }
-  };  
+  };
 
   return (
     <SafeCrackingUI
