@@ -71,8 +71,8 @@ function GameTile({
   onComplete,
 }: GameTileInterface) {
   return (
-    <Link href={link} className="w-full flex" onClick={onComplete}>
-      <div className="w-20 h-20 aspect-square">
+    <Link href={link} className="w-full flex">
+      <div className="w-20 h-20">
         <Image
           src={imageUrl}
           alt={name}

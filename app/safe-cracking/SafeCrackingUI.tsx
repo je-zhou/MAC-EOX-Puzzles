@@ -9,6 +9,7 @@ interface SafeCrackingUIProps {
   handleInputChange: (index: number, value: string) => void;
   checkCombination: () => void;
   newGame: () => void;
+  isCompleted: boolean;
 }
 
 const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
