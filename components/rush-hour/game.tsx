@@ -150,7 +150,7 @@ export const RushHourGame: React.FC = () => {
   };
 
   return (
-    <div className="relative p-3 bg-gray-900 rounded-lg shadow-lg">
+    <div className="relative p-2 bg-gray-900 rounded-lg shadow-lg">
       {/* Game Grid */}
       <Grid>
         {cars.map((car) => (

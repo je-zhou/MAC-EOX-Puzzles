@@ -44,13 +44,13 @@ const Grid: React.FC<GridProps> = ({ children }) => {
       <div
         className="absolute flex items-center justify-center transform"
         style={{
-          left: `${cellSize*rows + 10}px`, // Position to the right of the grid
+          left: `${cellSize*rows + 15}px`, // Position to the right of the grid
           top: `${cellSize*2}px`, // Align with the exit cell (2 * 60px)
           width: `${cellSize}px`,
           height: `${cellSize}px`,
         }}
       >
-        <span className="text-lg font-medium text-white">EXIT</span>
+        <span className="text-lg font-medium glowing-sign">EXIT</span>
       </div>
     </div>
   );
