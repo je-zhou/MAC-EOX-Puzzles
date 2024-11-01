@@ -26,13 +26,12 @@ export default function LandingPage() {
   return (
     <div className="w-full space-y-4">
       <GameTile
-        name="Rush hour"
-        description=""
-        imageUrl="/rush-hour/rush-hour.webp"
-        link="/rush-hour"
-        isCompleted={gameStatus.rushHour}
-        onComplete={() => handleGameCompletion("rushHour")}
-      />
+              name="Rush hour"
+              description=""
+              imageUrl="/rush-hour/rush-hour.webp"
+              link="/rush-hour"
+              isCompleted={gameStatus.rushHour} onComplete={function (): void {
+              } }      />
       <GameTile
         name="Combination number thing like those tiktoks"
         description=""

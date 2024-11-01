@@ -10,7 +10,6 @@ const Header: React.FC = () => {
           <Image
             src="/mac-logo-white.png"
             alt="MAC logo"
-            layout="intrinsic"
             width={100}
             height={100}
             className="object-contain"
@@ -28,7 +27,6 @@ const Header: React.FC = () => {
           <Image
             src="/cissa-logo.png"
             alt="CISSA logo"
-            layout="intrinsic"
             width={100}
             height={100}
             className="object-contain"

@@ -78,6 +78,12 @@ const RushHourGame: React.FC = () => {
   const [gameWon, setGameWon] = useState(false);
   const router = useRouter();
 
+  const handleGameCompletion = () => {
+    const savedStatus = JSON.parse(localStorage.getItem('gameStatus') || '{}');
+    const updatedStatus = { ...savedStatus, rushHour: true };
+    localStorage.setItem('gameStatus', JSON.stringify(updatedStatus));
+  };
+
   const moveCar = (id: number, deltaX: number, deltaY: number) => {
     setCars((prevCars) => {
       const newCars = prevCars.map((car) => {
@@ -162,6 +168,7 @@ const RushHourGame: React.FC = () => {
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded font-sans font-medium"
               onClick={() => {
                 // Reset the game or navigate to another page
+                handleGameCompletion();
                 router.push('/')
               }}
             >

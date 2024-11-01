@@ -88,8 +88,8 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
       <Image
         src={image}
         alt={`Car ${car.id}`}
-        layout="fill"
-        objectFit="contain"
+        fill
+        style={{ objectFit: 'contain' }}
         draggable={false}
       />
     </animated.div>
