@@ -1,52 +1,124 @@
 "use client";
 
-import { Message, useChat } from "ai/react";
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import { DeathByAiQuestionState } from "./client";
-
+import { Button } from "@/components/ui/button";
+import TextStream from "./textStream";
+import { CarouselItem } from "@/components/ui/carousel";
+import Link from "next/link";
 interface ChatBoxProps {
   questionState: DeathByAiQuestionState;
+  index: number;
+  proceedScenario: (
+    newScenario: string,
+    history: string[],
+    curScenarioNum: number,
+    outcome: "success" | "failure"
+  ) => void;
 }
 
-export default function ChatBox({ questionState }: ChatBoxProps) {
-  const { messages, input, append, handleInputChange, handleSubmit } = useChat({
-    initialMessages: questionState.initialMessages,
-    onFinish(message, options) {
-      questionState.scenario = message.content;
-    },
-  });
+export default function ChatBox({
+  questionState,
+  index,
+  proceedScenario,
+}: ChatBoxProps) {
+  const [isJudging, setIsJudging] = useState(false);
+  const [input, setInput] = useState("");
+  const [response, setResponse] = useState<{
+    outcome: string;
+    scenario: string;
+  }>();
 
-  useEffect(() => {
-    if (!questionState.scenario) {
-      append({
-        role: "user",
-        content: "Give me the scenario",
+  if (questionState.scenario === undefined) return <CarouselItem />;
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsJudging(true);
+
+    try {
+      const response = await fetch("/api/chat/judge", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          input,
+          scenario: questionState.scenario,
+          history: questionState.history,
+          index,
+        }),
       });
+
+      const text = await response.json();
+      const json = JSON.parse(text);
+
+      console.log(json);
+
+      setResponse(json);
+      proceedScenario(
+        json.scenario,
+        [...questionState.history, json.scenario, input],
+        index,
+        json.outcome
+      );
+    } catch (e) {
+      // TODO: Handle API traffic error.
+    } finally {
+      setIsJudging(false);
     }
-  }, []);
+  }
+
+  function FinalComponent() {
+    if (isJudging) {
+      return <div>Judging...</div>;
+    }
+
+    return (
+      <Button className="" disabled={response != null}>
+        Submit
+      </Button>
+    );
+  }
 
   return (
-    <div className="flex flex-col w-full max-w-2xl">
-      {messages
-        .filter((m) => m.role == "assistant")
-        .map((m) => (
-          <div key={m.id} className=" whitespace-pre-wrap">
-            {m.content}
-          </div>
-        ))}
+    <CarouselItem>
+      <div className="flex flex-col w-full space-between h-[calc(100vh-100px)] relative">
+        <div className="flex-1 bg-white/90 rounded px-4 py-2 overflow-auto flex flex-col-reverse">
+          <TextStream text={questionState.scenario ?? ""} />
+        </div>
 
-      <form onSubmit={handleSubmit} className="mt-8">
-        <textarea
-          className="w-full p-2 mb-8 border border-gray-300 rounded"
-          value={input}
-          placeholder="My fantastic, awesome, killer plan is to..."
-          onChange={handleInputChange}
-          maxLength={100} // Add maxLength attribute
-        />
-      </form>
-      <div className="w-full flex justify-between">
-        <p>{input.length} / 200</p>
+        {questionState.outcome === "failure" ? (
+          <Button onClick={() => window.location.reload()} className="mt-4">
+            Try another heist
+          </Button>
+        ) : index === 4 ? (
+          <Link href={"/"}>
+            <Button onClick={() => window.location.reload()} className="mt-4">
+              Complete Heist
+            </Button>
+          </Link>
+        ) : (
+          <form
+            onSubmit={onSubmit}
+            className=" flex flex-col items-center justify-center bottom-0"
+          >
+            <div className="w-full flex justify-between items-center text-white">
+              <h1 className="font-bold text-2xl pb-2 pt-4">Plan</h1>
+              <p>{input.length} / 300</p>
+            </div>
+
+            <textarea
+              className="w-full p-2 border border-gray-300 rounded h-40 mb-4"
+              value={input}
+              disabled={response !== undefined}
+              placeholder="My fantastic, awesome, killer plan is to..."
+              onChange={(v) => setInput(v.target.value)}
+              maxLength={300} // Add maxLength attribute
+            />
+            <FinalComponent />
+          </form>
+        )}
       </div>
-    </div>
+    </CarouselItem>
   );
 }

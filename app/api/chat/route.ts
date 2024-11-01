@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const result = await streamText({
-    model: groq("llama3-8b-8192"),
+    model: groq("llama3-70b-8192"),
     messages: convertToCoreMessages(messages),
   });
 
