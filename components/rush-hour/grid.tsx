@@ -17,7 +17,7 @@ const Grid: React.FC<GridProps> = ({ children }) => {
       cells.push(
         <div
           key={`${x}-${y}`}
-          className="border border-gray-700 box-border"
+          className="border border-gray-800 box-border"
           style={{ width: `${cellSize}`, height: `${cellSize}` }}
         ></div>
       );
@@ -27,13 +27,13 @@ const Grid: React.FC<GridProps> = ({ children }) => {
   return (
     <div className="relative" style={{ width: `${cellSize*rows}`, height: `${cellSize*rows}` }}>
       <div
-        className="relative grid grid-cols-6 grid-rows-6 border-4 border-black-800"
+        className="relative grid grid-cols-6 grid-rows-6 border-4 border-black-900"
         style={{
           width: `${cellSize*rows}`,
           height: `${cellSize*rows}`,
           gridTemplateColumns: `repeat(6, ${cellSize}px)`,
           gridTemplateRows: `repeat(6, ${cellSize}px)`,
-          border: "1px solid gray",
+          border: "2px solid black",
         }}
       >
         {cells}
