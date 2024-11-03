@@ -14,7 +14,6 @@ import GameCompleteModal from "./gameCompleteModal";
 
 export const RushHourGame: React.FC = () => {
   const [gameWon, setGameWon] = useState(false);
-  const router = useRouter();
   const [level, setLevel] = useState(0); 
   const [cars, setCars] = useState<CarType[]>(levels[level]);
   const [showLevelComplete, setShowLevelComplete] = useState(false);

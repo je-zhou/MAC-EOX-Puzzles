@@ -34,6 +34,11 @@ const Grid: React.FC<GridProps> = ({ children }) => {
           gridTemplateColumns: `repeat(6, ${cellSize}px)`,
           gridTemplateRows: `repeat(6, ${cellSize}px)`,
           border: "2px solid black",
+          touchAction: 'none',
+        userSelect: 'none', // Prevent selection
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        WebkitTouchCallout: 'none',
         }}
       >
         {cells}
