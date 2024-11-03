@@ -75,32 +75,24 @@ body {
 }
 
 .glowing-sign {
+  padding: 0px 8px;
   color: #fff;
-  font-size: 0.8rem; /* Adjusted font size to be smaller */
-  font-weight: semi-bold;
-  animation: pulsate 1.5s infinite alternate;
-  /* Smaller neon glow around text */
-  text-shadow:
-    0 0 1px #fff,
-    0 0 2px #fff,
-    0 0 3px #fff,
-    0 0 5px #bc13fe,
-    0 0 10px #bc13fe,
-    0 0 15px #bc13fe;
+  font-size: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #fff;
+  border-radius: 5px;
+  position: relative;
+  pointer-events: auto;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 1px #d94eff, 0 0 2px #d94eff, 0 0 3px #d94eff, 0 0 5px #d94eff;
 
-  /* Smaller border and padding */
-  border: 0.05rem solid #fff; /* Thinner border */
-  border-radius: 0.2rem; /* Reduced border radius */
-  padding: 0 0.4em; /* Reduced padding */
-
-  /* Smaller box shadow for the glow effect */
   box-shadow: 
-    0 0 0.02rem #fff,
-    0 0 0.02rem #fff,
-    0 0 0.25rem #bc13fe,
-    0 0 0.1rem #bc13fe,
-    0 0 0.35rem #bc13fe,
-    inset 0 0 0.15rem #bc13fe;
+    0 0 4px #d94eff,    /* Outer glow */
+    0 0 8px #d94eff,    /* Extended outer glow */
+    inset 0 0 4px #d94eff, /* Inner glow */
+    inset 0 0 8px #d94eff; /* Extended inner glow */
 }
 
 @keyframes pulsate {
