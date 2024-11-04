@@ -42,6 +42,10 @@ body {
   font-display: swap;
 }
 
+.title {
+  font-family: "Patternakan", sans-serif;
+} 
+
 @keyframes flickerGlowPink {
   0%,
   18%,
@@ -68,6 +72,58 @@ body {
   text-shadow: 0 0 2px rgba(255, 20, 147, 0.7), 0 0 4px rgba(255, 20, 147, 0.5),
     0 0 6px rgba(255, 20, 147, 0.3);
   animation: flickerGlowPink 1.5s infinite; /* Flickering animation */
+}
+
+.glowing-sign {
+  padding: 0px 8px;
+  color: #fff;
+  font-size: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #fff;
+  border-radius: 5px;
+  position: relative;
+  pointer-events: auto;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 1px #d94eff, 0 0 2px #d94eff, 0 0 3px #d94eff, 0 0 5px #d94eff;
+
+  box-shadow: 
+    0 0 4px #d94eff,    /* Outer glow */
+    0 0 8px #d94eff,    /* Extended outer glow */
+    inset 0 0 4px #d94eff, /* Inner glow */
+    inset 0 0 8px #d94eff; /* Extended inner glow */
+}
+
+@keyframes pulsate {
+    
+  100% {
+
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #bc13fe,
+      0 0 80px #bc13fe,
+      0 0 90px #bc13fe,
+      0 0 100px #bc13fe,
+      0 0 150px #bc13fe;
+  
+  }
+  
+  0% {
+
+    text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 10px #bc13fe,
+    0 0 45px #bc13fe,
+    0 0 55px #bc13fe,
+    0 0 70px #bc13fe,
+    0 0 80px #bc13fe;
+
+}
 }
 
 @layer utilities {

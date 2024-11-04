@@ -34,6 +34,11 @@ const Grid: React.FC<GridProps> = ({ children }) => {
           gridTemplateColumns: `repeat(6, ${cellSize}px)`,
           gridTemplateRows: `repeat(6, ${cellSize}px)`,
           border: "2px solid black",
+          touchAction: 'none',
+        userSelect: 'none', // Prevent selection
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        WebkitTouchCallout: 'none',
         }}
       >
         {cells}
@@ -44,13 +49,13 @@ const Grid: React.FC<GridProps> = ({ children }) => {
       <div
         className="absolute flex items-center justify-center transform"
         style={{
-          left: `${cellSize*rows + 10}px`, // Position to the right of the grid
+          left: `${cellSize*rows + 16}px`, // Position to the right of the grid
           top: `${cellSize*2}px`, // Align with the exit cell (2 * 60px)
           width: `${cellSize}px`,
           height: `${cellSize}px`,
         }}
       >
-        <span className="text-lg font-medium text-white">EXIT</span>
+        <span className="text-lg font-medium glowing-sign">EXIT</span>
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
 // components/rushhour/Car.tsx
 
-import React, { useState } from 'react';
-import { animated, useSpring } from 'react-spring';
-import { useDrag } from '@use-gesture/react';
-import { Car as CarType } from '@/app/types/Car';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import { animated, useSpring } from "react-spring";
+import { useDrag } from "@use-gesture/react";
+import { Car as CarType } from "@/app/types/Car";
+import Image from "next/image";
 
 interface CarProps {
   car: CarType;
@@ -16,9 +16,9 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
 
   const cellSize = 35;
 
-  const width = orientation === 'horizontal' ? length * cellSize : cellSize;
-  const height = orientation === 'vertical' ? length * cellSize : cellSize;
-  
+  const width = orientation === "horizontal" ? length * cellSize : cellSize;
+  const height = orientation === "vertical" ? length * cellSize : cellSize;
+
   const left = x * cellSize;
   const top = y * cellSize;
 
@@ -26,7 +26,7 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
 
   const bind = useDrag(
     ({ delta: [dx, dy], last, movement: [mx, my], memo = 0 }) => {
-      const delta = orientation === 'horizontal' ? dx : dy;
+      const delta = orientation === "horizontal" ? dx : dy;
       const move = delta / cellSize;
 
       // Accumulate the movement
@@ -42,8 +42,8 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
         // Move the car by gridMovement cells
         moveCar(
           car.id,
-          orientation === 'horizontal' ? gridMovement : 0,
-          orientation === 'vertical' ? gridMovement : 0
+          orientation === "horizontal" ? gridMovement : 0,
+          orientation === "vertical" ? gridMovement : 0
         );
       }
 
@@ -53,26 +53,25 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
 
       return newMemo; // Persist memo between events
     },
-    { axis: orientation === 'horizontal' ? 'x' : 'y' }
+    { axis: orientation === "horizontal" ? "x" : "y" }
   );
 
   // **Map of color names to Tailwind CSS classes**
   const colorClassMap: { [key: string]: string } = {
-    'red-500': 'bg-red-500',
-    'blue-500': 'bg-blue-500',
-    'green-500': 'bg-green-500',
-    'yellow-500': 'bg-yellow-500',
-    'purple-500': 'bg-purple-500',
-    'pink-500': 'bg-pink-500',
-    'orange-500': 'bg-orange-500',
+    "red-500": "bg-red-500",
+    "blue-500": "bg-blue-500",
+    "green-500": "bg-green-500",
+    "yellow-500": "bg-yellow-500",
+    "purple-500": "bg-purple-500",
+    "pink-500": "bg-pink-500",
+    "orange-500": "bg-orange-500",
     // Add more colors as needed
   };
 
   // **Get the class name for the car's color**
-  const colorClass = colorClassMap[color] || 'bg-gray-500'; // Default to gray if color not found
+  const colorClass = colorClassMap[color] || "bg-gray-500"; // Default to gray if color not found
 
-  const carClasses = `absolute ${image ? '' : colorClass} rounded-xl`;
-
+  const carClasses = `absolute ${image ? "" : colorClass} rounded-xl`;
 
   return (
     <animated.div
@@ -81,15 +80,25 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
       style={{
         width: `${width}px`,
         height: `${height}px`,
-        left: `${left + (orientation === 'horizontal' ? offset : 0)}px`,
-        top: `${top + (orientation === 'vertical' ? offset : 0)}px`,
-        touchAction: 'none'
-      }}>
+        left: `${left + (orientation === "horizontal" ? offset : 0)}px`,
+        top: `${top + (orientation === "vertical" ? offset : 0)}px`,
+        touchAction: "none",
+        userSelect: "none", // Prevent selection
+        WebkitUserSelect: "none",
+        WebkitTouchCallout: "none", // Disable iOS long-press menu
+      }}
+      onContextMenu={(e) => e.preventDefault()} // Prevent context menu
+    >
       <Image
         src={image}
         alt={`Car ${car.id}`}
         fill
-        style={{ objectFit: 'contain' }}
+        style={{
+          objectFit: "contain",
+          userSelect: "none", // Standard CSS property
+          WebkitUserSelect: "none", // For Safari
+          WebkitTouchCallout: "none", // Disables long-press context menu on iOS
+        }}
         draggable={false}
       />
     </animated.div>
