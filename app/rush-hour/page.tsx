@@ -10,7 +10,7 @@ const quicksand = Quicksand({
 
 const RushHourPage: React.FC = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center px-6 py-4 space-y-8">
       <div className="flex flex-col items-center justify-center p-8 bg-gray-950 max-w-xl rounded-2xl">
         {/* Title and Description */}
         <div className="mb-8 text-center">

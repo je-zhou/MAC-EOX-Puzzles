@@ -3,7 +3,7 @@ import DeathByAiClient from "./components/client";
 
 export default function DeathByAi() {
   return (
-    <div className="">
+    <div className="px-6 py-4 ">
       <DeathByAiClient></DeathByAiClient>
     </div>
   );
