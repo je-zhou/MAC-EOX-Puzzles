@@ -1,0 +1,29 @@
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #446; /* Custom color */
+  opacity: 0.8; /* Slight transparency */
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 0.8;
+  transform: scale(1.2); /* Scale up the active dot */
+  background: #fff; /* Different color for active dot */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff; /* Replace with your desired color */
+  opacity: 0.8; /* Optional: Adjust opacity */
+  transition: color 0.3s ease; /* Optional: Add transition for hover effect */
+}
+
+/* Optional: Add a hover effect to change the color when hovered */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #fff; /* Change color on hover */
+}
+
+
+

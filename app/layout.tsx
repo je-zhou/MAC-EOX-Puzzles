@@ -27,11 +27,12 @@ export default function RootLayout({
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/main-bg.jpeg')",
+            backgroundImage: "url('/bg1.png')",
             filter: "brightness(0.6)",
             zIndex: -1,
             width: "100vw",
             height: "100vh",
+            background: "linear-gradient(to bottom, #030026, #130026, #240236, #571c65, #671c65, #771c65, #dc4e84)",
           }}
         ></div>
 
