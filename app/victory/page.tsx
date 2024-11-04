@@ -13,21 +13,27 @@ const VictoryScreen = () => {
   return (
     <div className={`${styles.victoryScreen} w-full h-full`}>
       <div className={styles.wantedLevel}>
-        <span className={styles.star}><Image src="/victory/star.png" alt="Star" width={40} height={40} /></span>
-        <span className={styles.star}><Image src="/victory/star.png" alt="Star" width={40} height={40} /></span>
+        <span className={styles.star}>
+          <Image src="/victory/star.png" alt="Star" width={40} height={40} />
+        </span>
+        <span className={styles.star}>
+          <Image src="/victory/star.png" alt="Star" width={40} height={40} />
+        </span>
       </div>
 
       <div className={`${styles.title}`}>MISSION COMPLETE</div>
-      <div className={`${styles.subtitle} ${quicksand.className}`}>Show this screen to an agent!</div>
+      <div className={`${styles.subtitle} ${quicksand.className}`}>
+        Show this screen to an agent!
+      </div>
 
       <div className={styles.retroCar}>
-      <Image
-        src="/victory/CAR.png" // Path to your image in the public folder
-        alt="Retro Car"
-        width={500} // Provide a width
-        height={300} // Provide a height
-        priority // Optional: loads the image with high priority
-      />
+        <Image
+          src="/victory/CAR.png" // Path to your image in the public folder
+          alt="Retro Car"
+          width={500} // Provide a width
+          height={300} // Provide a height
+          priority // Optional: loads the image with high priority
+        />
       </div>
     </div>
   );
