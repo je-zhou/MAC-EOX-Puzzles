@@ -66,7 +66,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="w-full max-w-5xl mx-auto py-10">
+    <div className="w-full max-w-5xl mx-auto pt-4">
       <Swiper
         effect="coverflow"
         grabCursor={true}
@@ -123,8 +123,8 @@ function GameTile({
           className="rounded-lg opacity-90 hover:opacity-100 transition-opacity"
         />
       </div>
-      <h1 className="text-lg text-white title mt-4 patternakan glowing-text">{name}</h1>
-      <p className="text-sm text-white/90 leading-tight pb-10 font-quicksand">{description}</p>
+      <h1 className="text-2xl text-white title mt-4 patternakan game-title">{name}</h1>
+      <p className="text-md text-white/90 leading-tight pb-10 font-quicksand px-8">{description}</p>
       {isCompleted && (
         <span className="mt-2 bg-green-400 h-2 w-2 rounded-full"></span>
       )}

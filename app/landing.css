@@ -12,18 +12,54 @@
   background: #fff; /* Different color for active dot */
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-  color: #fff; /* Replace with your desired color */
-  opacity: 0.8; /* Optional: Adjust opacity */
-  transition: color 0.3s ease; /* Optional: Add transition for hover effect */
+.swiper-button-next, .swiper-button-prev {
+  color: #fff; /* Set the arrow color */
+  text-shadow: 0 0 5px #d94eff, 0 0 10px #d94eff, 0 0 15px #d94eff; /* Glow effect */
+  transition: text-shadow 0.3s ease-in-out; /* Smooth transition for hover */
 }
 
-/* Optional: Add a hover effect to change the color when hovered */
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  color: #fff; /* Change color on hover */
+/* Intense glow on hover */
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  text-shadow: 0 0 10px #d94eff, 0 0 20px #d94eff, 0 0 30px #d94eff;
 }
+
+.game-title {
+  text-shadow: 0 0 3px rgba(250, 127, 26, 0.7), 0 0 5px rgba(252, 117, 28, 0.5),
+    0 0 7px rgba(255, 67, 20, 0.358);
+}
+
+.subheading {
+  padding: 10px 5px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: 4px solid #fff;
+  border-radius: 10px;
+  position: relative;
+  text-shadow: 0 0 5px #d94eff, 0 0 10px #d94eff, 0 0 20px #d94eff, 0 0 30px #d94eff;
+
+  box-shadow: 
+    0 0 10px #d94eff,    /* Outer glow */
+    0 0 20px #d94eff,    /* Extended outer glow */
+    inset 0 0 10px #d94eff, /* Inner glow */
+    inset 0 0 20px #d94eff; /* Extended inner glow */
+}
+
+.description {
+  padding: 10px 0px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  text-shadow: 0 0 5px #d94eff, 0 0 10px #d94eff, 0 0 20px #d94eff, 0 0 30px #d94eff;
+}
+
+
+
+
 
 
 
