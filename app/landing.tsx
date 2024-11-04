@@ -1,11 +1,15 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
   // TODO: I'm thinking we can have a main state that monitors the completion of all 4 games.
   // Implemented, but not thoroughly tested. Test more after the games are merged
-
+  const router = useRouter();
+  
   const [gameStatus, setGameStatus] = useState({
     rushHour: false,
     combinationNumber: false,
@@ -22,6 +26,13 @@ export default function LandingPage() {
     setGameStatus(updatedStatus);
     localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
   };
+
+  // Redirect to victory screen if all games are completed
+  useEffect(() => {
+    if (Object.values(gameStatus).every((status) => status === true)) {
+      router.push("/victory"); // Redirect to the victory page
+    }
+  }, [gameStatus, router]);
 
   return (
     <div className="w-full space-y-4 px-6 py-4">
