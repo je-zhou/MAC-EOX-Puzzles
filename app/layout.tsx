@@ -39,7 +39,7 @@ export default function RootLayout({
         <Header />
 
         {/* Container for main content with padding */}
-        <main className="px-6 py-4 space-y-8">{children}</main>
+        <main className="space-y-8">{children}</main>
       </body>
     </html>
   );

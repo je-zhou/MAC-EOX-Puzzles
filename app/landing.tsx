@@ -24,7 +24,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 px-6 py-4">
       <GameTile
         name="HAIST"
         description="Can you mastermind the heist of the century?"
