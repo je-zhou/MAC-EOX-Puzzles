@@ -114,6 +114,11 @@ function GameTile({
 }: GameTileInterface) {
   return (
     <Link href={link} className="w-full flex flex-col items-center text-center">
+      {isCompleted && (
+       <div className="absolute top-4 right-20 z-10 completed">
+       Completed
+     </div>
+      )}
       <div className="relative w-64 h-80 bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
         <Image
           src={imageUrl}
@@ -125,9 +130,7 @@ function GameTile({
       </div>
       <h1 className="text-2xl text-white title mt-4 patternakan game-title">{name}</h1>
       <p className="text-md text-white/90 leading-tight pb-10 font-quicksand px-8">{description}</p>
-      {isCompleted && (
-        <span className="mt-2 bg-green-400 h-2 w-2 rounded-full"></span>
-      )}
+      
     </Link>
   );
 }
