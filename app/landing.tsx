@@ -117,25 +117,38 @@ function GameTile({
   isCompleted,
   onComplete,
 }: GameTileInterface) {
-  return (
-    <Link href={link} className="w-full flex flex-col items-center text-center">
+  const TileContent = (
+    <>
       {isCompleted && (
-       <div className="absolute top-4 right-20 z-10 completed">
-       Completed
-     </div>
+        <div className="absolute top-4 right-20 z-10 completed">
+          Completed
+        </div>
       )}
-      <div className="relative w-64 h-80 bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+      <div className={`relative w-64 h-80 bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform`}>
         <Image
           src={imageUrl}
           alt={name}
           fill 
           style={{ objectFit: "cover" }}
-          className="rounded-lg opacity-90 hover:opacity-100 transition-opacity"
+          className="rounded-lg hover:opacity-100 transition-opacity"
         />
+        {/* Dark overlay for completed games */}
+        {isCompleted && (
+          <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
+        )}
       </div>
       <h1 className="text-2xl text-white title mt-4 patternakan game-title">{name}</h1>
       <p className="text-md text-white/90 leading-tight pb-10 font-quicksand px-8">{description}</p>
-      
+    </>
+  );
+
+  return isCompleted ? (
+    <div className="w-full flex flex-col items-center text-center cursor-not-allowed">
+      {TileContent}
+    </div>
+  ) : (
+    <Link href={link} className="w-full flex flex-col items-center text-center">
+      {TileContent}
     </Link>
   );
 }
