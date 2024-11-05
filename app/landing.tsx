@@ -21,23 +21,27 @@ export default function LandingPage() {
     deathByAI: false,
   });
 
+  // Save game status
   useEffect(() => {
     const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
     setGameStatus((prevStatus) => ({ ...prevStatus, ...savedStatus }));
   }, []);
 
+  // Set new game status after game has been complete
   const handleGameCompletion = (gameName: string) => {
     const updatedStatus = { ...gameStatus, [gameName]: true };
     setGameStatus(updatedStatus);
     localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
   };
 
+  // Check if all games have been complete
   useEffect(() => {
     if (Object.values(gameStatus).every((status) => status === true)) {
       router.push("/victory");
     }
   }, [gameStatus, router]);
 
+  // List of all games
   const games = [
     {
       name: "H.AI.ST",
@@ -66,13 +70,14 @@ export default function LandingPage() {
   ];
 
   return (
+    // Carousel slider
     <div className="w-full max-w-5xl mx-auto pt-4">
       <Swiper
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
         slidesPerView="auto"
-        loop={true}  // Enable infinite looping
+        loop={true}  
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
