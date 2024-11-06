@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import TextStream from "./textStream";
 import { CarouselItem } from "@/components/ui/carousel";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 interface ChatBoxProps {
   questionState: DeathByAiQuestionState;
   index: number;
@@ -52,8 +53,6 @@ export default function ChatBox({
       const text = await response.json();
       const json = JSON.parse(text);
 
-      console.log(json);
-
       setResponse(json);
       proceedScenario(
         json.scenario,
@@ -67,6 +66,14 @@ export default function ChatBox({
       setIsJudging(false);
     }
   }
+
+  const handleGameCompletion = () => {
+    const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
+    const updatedStatus = { ...savedStatus, haist: true };
+    localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
+
+    window.location.href = "/";
+  };
 
   function FinalComponent() {
     if (isJudging) {
@@ -92,11 +99,9 @@ export default function ChatBox({
             Try another heist
           </Button>
         ) : index === 4 ? (
-          <Link href={"/"}>
-            <Button onClick={() => window.location.reload()} className="mt-4">
-              Complete Heist
-            </Button>
-          </Link>
+          <Button onClick={() => handleGameCompletion()} className="mt-4">
+            Complete Heist
+          </Button>
         ) : (
           <form
             onSubmit={onSubmit}
