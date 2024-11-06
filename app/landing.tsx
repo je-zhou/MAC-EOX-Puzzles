@@ -4,21 +4,21 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, EffectCoverflow } from "swiper/modules";
 import "./landing.css";
 
 export default function LandingPage() {
   const router = useRouter();
-  
+
   const [gameStatus, setGameStatus] = useState({
     rushHour: false,
     combinationNumber: false,
-    deathByAI: false,
+    haist: false,
   });
 
   // Save game status
@@ -48,7 +48,7 @@ export default function LandingPage() {
       description: "Can you mastermind the heist of the century?",
       imageUrl: "/haist/haist.webp",
       link: "/death-by-ai",
-      isCompleted: gameStatus.deathByAI,
+      isCompleted: gameStatus.haist,
       onComplete: () => handleGameCompletion("deathByAI"),
     },
     {
@@ -77,7 +77,7 @@ export default function LandingPage() {
         grabCursor={true}
         centeredSlides={true}
         slidesPerView="auto"
-        loop={true}  
+        loop={true}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -120,15 +120,15 @@ function GameTile({
   const TileContent = (
     <>
       {isCompleted && (
-        <div className="absolute top-4 right-20 z-10 completed">
-          Completed
-        </div>
+        <div className="absolute top-4 right-20 z-10 completed">Completed</div>
       )}
-      <div className={`relative w-64 h-80 bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform`}>
+      <div
+        className={`relative w-64 h-80 bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform transform`}
+      >
         <Image
           src={imageUrl}
           alt={name}
-          fill 
+          fill
           style={{ objectFit: "cover" }}
           className="rounded-lg hover:opacity-100 transition-opacity"
         />
@@ -137,8 +137,12 @@ function GameTile({
           <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
         )}
       </div>
-      <h1 className="text-2xl text-white title mt-4 patternakan game-title">{name}</h1>
-      <p className="text-md text-white/90 leading-tight pb-10 font-quicksand px-8">{description}</p>
+      <h1 className="text-2xl text-white title mt-4 patternakan game-title">
+        {name}
+      </h1>
+      <p className="text-md text-white/90 leading-tight pb-10 font-quicksand px-8">
+        {description}
+      </p>
     </>
   );
 
