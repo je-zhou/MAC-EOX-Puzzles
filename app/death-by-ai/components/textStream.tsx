@@ -8,7 +8,7 @@ const TextStream = ({ text }: { text: string }) => {
     if (displayedText.length < text.length && isTyping) {
       const timeout = setTimeout(() => {
         setDisplayedText(text.slice(0, displayedText.length + 1));
-      }, 2); // Adjust speed by changing timeout duration
+      }, 1); // Adjust speed by changing timeout duration
 
       return () => clearTimeout(timeout);
     } else if (displayedText.length === text.length) {
