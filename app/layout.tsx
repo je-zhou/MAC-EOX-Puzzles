@@ -27,11 +27,11 @@ export default function RootLayout({
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/main-bg.jpeg')",
             filter: "brightness(0.6)",
             zIndex: -1,
             width: "100vw",
             height: "100vh",
+            backgroundImage: "url('/bg1.png')",
           }}
         ></div>
 

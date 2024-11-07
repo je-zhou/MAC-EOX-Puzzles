@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'swiper/swiper-bundle.css';
 
 /*Removing fonts for now*/
 /* @font-face {
@@ -45,6 +46,10 @@ body {
 .title {
   font-family: "Patternakan", sans-serif;
 } 
+
+.font-quicksand {
+  font-family: 'Quicksand', sans-serif;
+}
 
 @keyframes flickerGlowPink {
   0%,
