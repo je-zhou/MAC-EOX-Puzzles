@@ -94,13 +94,13 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
 
     return (
       <div className="flex flex-col items-center bg-gray-600 bg-opacity-80 rounded-lg p-2 shadow-inner w-12">
-        <div className="number-display text-2xl font-bold text-gray-300">
+        <div className="text-2xl font-bold text-gray-300">
           {previousDigit}
         </div>
-        <div className="number-display text-4xl font-bold text-white">
+        <div className="text-4xl font-bold text-white">
           {digit}
         </div>
-        <div className="number-display text-2xl font-bold text-gray-300">
+        <div className="text-2xl font-bold text-gray-300">
           {nextDigit}
         </div>
       </div>
@@ -115,12 +115,12 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
       onTouchEnd={handleTouchEnd}
     >
       <div className="bg-gray-800 bg-opacity-90 rounded-lg shadow-2xl p-8 max-w-lg w-full">
-        <h1 className="text-4xl font-bold mb-4 text-center text-white flex items-center justify-center glowing-text">
-          Crack the Safe
+        <h1 className="text-center text-4xl font-black text-white title glowing-text">
+          Safe Cracker
         </h1>
 
-        <div className="mb-2">
-          <h2 className="gta-font-alt text-2xl font-semibold text-gray-50 mb-2">Clues</h2>
+        <div className="mb-6">
+          <h2 className="text-center mt-2 mb-2 text-lg text-gray-200 font-semibold">Guess the combination using the following clues</h2>
           <div className="sticky-note p-4 pb-1 bg-gray-700 bg-opacity-70 text-gray-800 rounded-lg">
             {clues.map((clue, index) => (
               <p key={index} className="handwriting mb-2">
@@ -131,9 +131,6 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
         </div>
 
         <div className="mb-2">
-          <h2 className="gta-font-alt text-2xl font-semibold text-gray-50 mb-2">
-            Your Guess
-          </h2>
           <div className="flex justify-center">
             {guess.map((_, index) => (
               <div
@@ -149,20 +146,20 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
         </div>
 
         <div className="mb-4 text-center">
-          <p className="gta-font-alt-sm text-lg font-semibold text-red-400">{result}</p>
-          <p className="gta-font-alt-sm text-xs text-gray-300 mt-2">Attempts: {attempts}</p>
+          <p className="mt-2 mb-2 text-lg text-gray-200 font-semibold text-red-400">{result}</p>
+          <p className="mt-2 mb-2 text-gray-200">Attempts: {attempts}</p>
         </div>
 
         <div className="flex justify-between">
           <button
             onClick={checkCombination}
-            className="gta-font-alt-sm w-1/2 bg-blue-600 hover:bg-blue-800 text-white font-medium py-2 px-3 rounded-lg mr-2 shadow-lg text-base"
+            className="w-1/2 bg-blue-600 hover:bg-blue-800 text-white font-medium py-2 px-3 rounded-lg mr-2 shadow-lg text-base font-semibold"
           >
             Try Combo
           </button>
           <button
             onClick={newGame}
-            className="gta-font-alt-sm w-1/2 bg-green-600 hover:bg-green-800 text-white font-medium py-2 px-3 rounded-lg shadow-lg text-base"
+            className="w-1/2 bg-green-600 hover:bg-green-800 text-white font-medium py-2 px-3 rounded-lg shadow-lg text-base font-semibold"
           >
             New Game
           </button>
