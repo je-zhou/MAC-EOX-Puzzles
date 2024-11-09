@@ -68,6 +68,15 @@ export default function DeathByAiClient() {
           scenario: newScenario,
         },
       });
+    } else if (curScenarioNum == 3) {
+      setGameState({
+        ...gameState,
+        4: {
+          history,
+          outcome,
+          scenario: newScenario,
+        },
+      });
     }
 
     emblaApi?.scrollNext();
