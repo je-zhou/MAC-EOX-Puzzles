@@ -12,7 +12,7 @@ interface CarProps {
 }
 
 const Car: React.FC<CarProps> = ({ car, moveCar }) => {
-  const { x, y, length, orientation, isMain, color, image } = car;
+  const { x, y, length, orientation, isMain, image } = car;
 
   const cellSize = 35;
 
@@ -55,23 +55,7 @@ const Car: React.FC<CarProps> = ({ car, moveCar }) => {
     },
     { axis: orientation === "horizontal" ? "x" : "y" }
   );
-
-  // **Map of color names to Tailwind CSS classes**
-  const colorClassMap: { [key: string]: string } = {
-    "red-500": "bg-red-500",
-    "blue-500": "bg-blue-500",
-    "green-500": "bg-green-500",
-    "yellow-500": "bg-yellow-500",
-    "purple-500": "bg-purple-500",
-    "pink-500": "bg-pink-500",
-    "orange-500": "bg-orange-500",
-    // Add more colors as needed
-  };
-
-  // **Get the class name for the car's color**
-  const colorClass = colorClassMap[color] || "bg-gray-500"; // Default to gray if color not found
-
-  const carClasses = `absolute ${image ? "" : colorClass} rounded-xl`;
+  const carClasses = `absolute ${image}`;
 
   return (
     <animated.div

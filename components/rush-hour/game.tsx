@@ -10,12 +10,21 @@ import Car from "./car";
 import { levels } from "./levels"; 
 import GameModal from "./gameModal";
 import GameCompleteModal from "./gameCompleteModal";
-
+import styles from "./gameModal.module.css";
 
 export const RushHourGame: React.FC = () => {
+  const getInitialCarsForLevel = (levelIndex: number): CarType[] => {
+    // Use JSON methods to deep copy the level data
+    return JSON.parse(JSON.stringify(levels[levelIndex]));
+  };
+
+  const resetLevel = () => {
+    setCars(getInitialCarsForLevel(level));
+  };
+
   const [gameWon, setGameWon] = useState(false);
   const [level, setLevel] = useState(0); 
-  const [cars, setCars] = useState<CarType[]>(levels[level]);
+  const [cars, setCars] = useState<CarType[]>(getInitialCarsForLevel(level));
   const [showLevelComplete, setShowLevelComplete] = useState(false);
 
   useEffect(() => {
@@ -24,8 +33,13 @@ export const RushHourGame: React.FC = () => {
       const timer = setTimeout(() => {
         setShowLevelComplete(false);
         // Move to the next level if it exists
-        setLevel((prevLevel) => prevLevel + 1);
-        setCars(levels[level + 1]);
+        setLevel((prevLevel) => {
+          const newLevel = prevLevel + 1;
+          if (newLevel < levels.length) {
+            setCars(getInitialCarsForLevel(newLevel));
+          }
+          return newLevel;
+        });
       }, 2000); // Show popup for 2 seconds
 
       return () => clearTimeout(timer); // Cleanup on component unmount
@@ -42,7 +56,7 @@ export const RushHourGame: React.FC = () => {
       handleGameCompletion();
     }
   };
-  
+
   const handleGameCompletion = () => {
     const savedStatus = JSON.parse(localStorage.getItem('gameStatus') || '{}');
     const updatedStatus = { ...savedStatus, rushHour: true };
@@ -123,6 +137,14 @@ export const RushHourGame: React.FC = () => {
           <Car key={car.id} car={car} moveCar={moveCar} />
         ))}
       </Grid>
+      <div className="mt-4 flex justify-center">
+      <button
+        className={styles.resetButton}
+        onClick={resetLevel}
+      >
+        RESET
+      </button>
+    </div>
       {/* Show "Level Complete" popup if `showLevelComplete` is true */}
       {showLevelComplete && (
         <GameModal message="LEVEL COMPLETE!"/>

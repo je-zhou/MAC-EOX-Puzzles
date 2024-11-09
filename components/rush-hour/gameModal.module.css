@@ -63,3 +63,19 @@
     inset 0 0 5px #ff4500, /* Inner glow */
     inset 0 0 10px #ff4500; /* Extended inner glow */
 }
+
+.resetButton {
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  background-color: rgba(224,35,170,1.0);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 
+    0 0 5px rgba(224,35,170,0.5),    /* Outer glow */
+    0 0 15px rgba(224,35,170,0.4),    /* Extended outer glow */
+    0 0 20px rgba(224,35,170,0.3), /* Inner glow */
+    0 0 30px rgba(224,35,170,0.2); /* Extended inner glow */
+}
