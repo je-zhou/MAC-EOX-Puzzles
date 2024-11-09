@@ -68,9 +68,9 @@ export default function ChatBox({
   }
 
   const handleGameCompletion = () => {
-    const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
+    const savedStatus = JSON.parse(sessionStorage.getItem("gameStatus") || "{}");
     const updatedStatus = { ...savedStatus, haist: true };
-    localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
+    sessionStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
 
     window.location.href = "/";
   };

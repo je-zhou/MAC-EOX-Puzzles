@@ -20,7 +20,7 @@ const SafeCrackingGame = () => {
   // Handle game completion
   useEffect(() => {
     if (isCompleted) {
-      // Update localStorage directly
+      // Update sessionStorage directly
       try {
         const savedStatus = JSON.parse(sessionStorage.getItem("gameStatus") || "{}");
         const updatedStatus = { ...savedStatus, combinationNumber: true };
