@@ -82,7 +82,7 @@ export default function LandingPage() {
           stretch: 0,
           depth: 100,
           modifier: 1,
-          slideShadows: true,
+          slideShadows: false,
         }}
         pagination={{ clickable: true }}
         navigation={true}
