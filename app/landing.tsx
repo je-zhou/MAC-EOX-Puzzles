@@ -23,7 +23,7 @@ export default function LandingPage() {
 
   // Save game status
   useEffect(() => {
-    const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
+    const savedStatus = JSON.parse(sessionStorage.getItem("gameStatus") || "{}");
     setGameStatus((prevStatus) => ({ ...prevStatus, ...savedStatus }));
   }, []);
 
@@ -31,7 +31,7 @@ export default function LandingPage() {
   const handleGameCompletion = (gameName: string) => {
     const updatedStatus = { ...gameStatus, [gameName]: true };
     setGameStatus(updatedStatus);
-    localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
+    sessionStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
   };
 
   // Check if all games have been complete

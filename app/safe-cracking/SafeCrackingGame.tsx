@@ -22,9 +22,9 @@ const SafeCrackingGame = () => {
     if (isCompleted) {
       // Update localStorage directly
       try {
-        const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
+        const savedStatus = JSON.parse(sessionStorage.getItem("gameStatus") || "{}");
         const updatedStatus = { ...savedStatus, combinationNumber: true };
-        localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
+        sessionStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
         
         // Redirect to landing page after a short delay
         setTimeout(() => {
