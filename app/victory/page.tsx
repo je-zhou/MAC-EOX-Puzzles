@@ -17,7 +17,7 @@ const VictoryScreen = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const storedStatus = localStorage.getItem("gameStatus");
+        const storedStatus = sessionStorage.getItem("gameStatus");
 
         // Check if gameStatus exists and is properly formatted
         if (!storedStatus) {

@@ -44,9 +44,9 @@ export const RushHourGame: React.FC = () => {
   };
   
   const handleGameCompletion = () => {
-    const savedStatus = JSON.parse(localStorage.getItem('gameStatus') || '{}');
+    const savedStatus = JSON.parse(sessionStorage.getItem('gameStatus') || '{}');
     const updatedStatus = { ...savedStatus, rushHour: true };
-    localStorage.setItem('gameStatus', JSON.stringify(updatedStatus));
+    sessionStorage.setItem('gameStatus', JSON.stringify(updatedStatus));
   };
 
   const moveCar = (id: number, deltaX: number, deltaY: number) => {

@@ -23,7 +23,7 @@ export default function LandingPage() {
 
   // Save game status
   useEffect(() => {
-    const savedStatus = JSON.parse(localStorage.getItem("gameStatus") || "{}");
+    const savedStatus = JSON.parse(sessionStorage.getItem("gameStatus") || "{}");
     setGameStatus((prevStatus) => ({ ...prevStatus, ...savedStatus }));
   }, []);
 
@@ -31,7 +31,7 @@ export default function LandingPage() {
   const handleGameCompletion = (gameName: string) => {
     const updatedStatus = { ...gameStatus, [gameName]: true };
     setGameStatus(updatedStatus);
-    localStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
+    sessionStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
   };
 
   // Check if all games have been complete
@@ -75,15 +75,14 @@ export default function LandingPage() {
       <Swiper
         effect="coverflow"
         grabCursor={true}
-        centeredSlides={true}
-        slidesPerView="auto"
+        slidesPerView={1}
         loop={true}
         coverflowEffect={{
-          rotate: 0,
+          rotate: 50,
           stretch: 0,
           depth: 100,
-          modifier: 1.5,
-          slideShadows: true,
+          modifier: 1,
+          slideShadows: false,
         }}
         pagination={{ clickable: true }}
         navigation={true}
