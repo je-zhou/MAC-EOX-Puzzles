@@ -119,11 +119,11 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
           Safe Cracker
         </h1>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <h2 className="text-center mt-2 mb-2 text-lg text-gray-200 font-semibold">Guess the combination using the following clues</h2>
-          <div className="sticky-note p-4 pb-1 bg-gray-700 bg-opacity-70 text-gray-800 rounded-lg">
+          <div className="sticky-note pb-2 p-4 bg-gray-700 bg-opacity-70 text-gray-800 rounded-lg">
             {clues.map((clue, index) => (
-              <p key={index} className="handwriting mb-2">
+              <p key={index} className="handwriting">
                 {clue}
               </p>
             ))}
@@ -146,20 +146,20 @@ const SafeCrackingUI: React.FC<SafeCrackingUIProps> = ({
         </div>
 
         <div className="mb-4 text-center">
-          <p className="mt-2 mb-2 text-lg text-gray-200 font-semibold text-red-400">{result}</p>
-          <p className="mt-2 mb-2 text-gray-200">Attempts: {attempts}</p>
+          <p className="mt-2 text-lg text-gray-200 font-semibold text-red-400">{result}</p>
+          <p className="text-gray-200">Attempts: {attempts}</p>
         </div>
 
         <div className="flex justify-between">
           <button
             onClick={checkCombination}
-            className="w-1/2 bg-blue-600 hover:bg-blue-800 text-white font-medium py-2 px-3 rounded-lg mr-2 shadow-lg text-base font-semibold"
+            className="w-1/2 py-2 px-3 mr-5 border-2 border-white text-white text-base rounded-lg bg-transparent shadow-[0_0_5px_#ff1493,0_0_10px_#ff1493,inset_0_0_5px_#ff1493,inset_0_0_10px_#ff1493] hover:shadow-[0_0_5px_#ff1493,0_0_10px_#ff1493,inset_0_0_5px_#ff1493,inset_0_0_10px_#ff1493] text-shadow-[0_0_5px_#ff00ff,0_0_10px_#ff00ff,0_0_20px_#ff00ff,0_0_40px_#ff00ff,0_0_80px_#ff00ff]"
           >
             Try Combo
           </button>
           <button
             onClick={newGame}
-            className="w-1/2 bg-green-600 hover:bg-green-800 text-white font-medium py-2 px-3 rounded-lg shadow-lg text-base font-semibold"
+            className="w-1/2 py-2 px-3 border-2 border-white text-white text-base rounded-lg bg-transparent shadow-[0_0_5px_#ff1493,0_0_10px_#ff1493,inset_0_0_5px_#ff1493,inset_0_0_10px_#ff1493] hover:shadow-[0_0_5px_#ff1493,0_0_10px_#ff1493,inset_0_0_5px_#ff1493,inset_0_0_10px_#ff1493] text-shadow-[0_0_5px_#ff00ff,0_0_10px_#ff00ff,0_0_20px_#ff00ff,0_0_40px_#ff00ff,0_0_80px_#ff00ff]"
           >
             New Game
           </button>
