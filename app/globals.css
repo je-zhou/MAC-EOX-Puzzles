@@ -10,11 +10,6 @@
 }
 
 @font-face {
-  font-family: "FontAlt";
-  src: url("./fonts/BankGothic Md BT.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "ViceCity";
   src: url("./fonts/vicecityfont.ttf") format("truetype");
 }
@@ -221,18 +216,16 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+@font-face {
+  font-family: "Handwriting";
+  src: url("/fonts/Allura-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .handwriting {
-  font-family: "ViceCity", cursive;
+  font-family: "Handwriting", cursive;
   font-size: 1.5rem;
   line-height: 1.2;
-}
-
-.gta-font-alt {
-  font-family: "FontAlt", sans-serif;
-  font-size: 1.6rem;
-}
-
-.gta-font-alt-sm {
-  font-family: "FontAlt", sans-serif;
-  font-size: 1.2rem;
 }

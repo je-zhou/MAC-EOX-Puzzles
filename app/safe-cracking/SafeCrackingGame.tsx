@@ -125,7 +125,7 @@ const SafeCrackingGame = () => {
           resultText += `${correctDigits} digit${
             correctDigits > 1 ? "s" : ""
           } misplaced`;
-          if (correctPositions > 0) resultText += " and ";
+          if (correctPositions > 0) resultText += " ";
         }
         if (correctPositions > 0) {
           resultText += `${correctPositions} digit${
