@@ -20,7 +20,6 @@ interface DeathByAiGameState {
   1: DeathByAiQuestionState;
   2: DeathByAiQuestionState;
   3: DeathByAiQuestionState;
-  4: DeathByAiQuestionState;
 }
 
 export default function DeathByAiClient() {
@@ -35,7 +34,6 @@ export default function DeathByAiClient() {
     },
     2: { history: [], outcome: "failure" },
     3: { history: [], outcome: "failure" },
-    4: { history: [], outcome: "failure" },
   });
 
   const [currentQuestion, setCurrentQuestion] = useState(-1);
@@ -68,15 +66,6 @@ export default function DeathByAiClient() {
           scenario: newScenario,
         },
       });
-    } else if (curScenarioNum == 3) {
-      setGameState({
-        ...gameState,
-        4: {
-          history,
-          outcome,
-          scenario: newScenario,
-        },
-      });
     }
 
     emblaApi?.scrollNext();
@@ -102,11 +91,6 @@ export default function DeathByAiClient() {
             <ChatBox
               questionState={gameState[3]}
               index={3}
-              proceedScenario={proceedScenario}
-            />
-            <ChatBox
-              questionState={gameState[4]}
-              index={4}
               proceedScenario={proceedScenario}
             />
           </CarouselContent>
