@@ -5,8 +5,7 @@ import { DeathByAiQuestionState } from "./client";
 import { Button } from "@/components/ui/button";
 import TextStream from "./textStream";
 import { CarouselItem } from "@/components/ui/carousel";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+
 interface ChatBoxProps {
   questionState: DeathByAiQuestionState;
   index: number;
@@ -68,7 +67,9 @@ export default function ChatBox({
   }
 
   const handleGameCompletion = () => {
-    const savedStatus = JSON.parse(sessionStorage.getItem("gameStatus") || "{}");
+    const savedStatus = JSON.parse(
+      sessionStorage.getItem("gameStatus") || "{}"
+    );
     const updatedStatus = { ...savedStatus, haist: true };
     sessionStorage.setItem("gameStatus", JSON.stringify(updatedStatus));
 
@@ -98,7 +99,7 @@ export default function ChatBox({
           <Button onClick={() => window.location.reload()} className="mt-4">
             Try another heist
           </Button>
-        ) : index === 4 ? (
+        ) : index === 3 ? (
           <Button onClick={() => handleGameCompletion()} className="mt-4">
             Complete Heist
           </Button>
